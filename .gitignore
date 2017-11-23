@@ -1,7 +1,10 @@
 /.gradle/
 /build/
 /gradle/
-/gongzuo.iml
+/.gradle/
+/gradlew*
 /gongzuo.ipr
 /gongzuo.iws
 target/
+/lib/
+/out/
