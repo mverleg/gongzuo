@@ -1,5 +1,5 @@
 package jit.ast
 
-class FunCall(val name: Name): Expr {
+class FunCall(public val name: Name): Expr {
 
 }

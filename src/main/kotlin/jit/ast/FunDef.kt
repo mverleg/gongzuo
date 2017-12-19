@@ -1,5 +1,5 @@
 package jit.ast
 
-class FunDef(val name: Name, val body: Expr) {
+class FunDef(public val name: Name, public val body: Expr) {
 
 }
