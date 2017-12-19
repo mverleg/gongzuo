@@ -7,7 +7,7 @@ class Name(value: String) {
         if (Regex("^[a-zA-Z_][a-zA-Z0-9_]*$").containsMatchIn(value)) {
             this.value = value
         } else {
-            throw IllegalArgumentException(String.format("Not a valid name: {}", value))
+            throw IllegalArgumentException("Not a valid name: {}" + value)
         }
     }
 }

@@ -9,8 +9,14 @@ import jit.comp.Exec
  */
 class Processor(val blocks: MutableMap<Name, Exec>) {
 
+    var currentBlock: Exec? = null;
+
     fun run() {
         println("Running " + blocks)
+    }
+
+    fun replace(newCode: Exec) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
 
