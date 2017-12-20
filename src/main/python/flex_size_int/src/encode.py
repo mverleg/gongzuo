@@ -30,7 +30,6 @@ def long_to_flex(nr):
 	anr = abs(int(nr))
 	if (anr > 2**63):
 		raise NotImplementedError("numbers bigger than Long cannot be encoded yet, because bit-shift is not exact for such values (value: {})".format(nr))
-	# print(anr)
 	if anr == 0:
 		blockcnt = 1
 	else:
@@ -39,11 +38,9 @@ def long_to_flex(nr):
 	bytes = [None] * blockcnt
 	# All except first blocks have 7 bits
 	for blocknr in range(blockcnt - 1, 0, -1):
-		# print(blocknr, anr % 128, anr // 128)
 		bytes[blocknr] = tobit.pack(anr % 128)[0]
 		anr >>= 7
 	# First block has 6 or fewer bits
-	# print(0, anr % 64)
 	bytes[0] = tobit.pack(anr % 64)[0]
 	anr >>= 6
 	# Set the first bit of last byte to 1
@@ -73,6 +70,7 @@ if __name__ == '__main__':
 	# print('>>' + str(92233720368547758079418%64))
 	print(bin_to_txt(long_to_flex(58)))
 	print(bin_to_txt(long_to_flex(-413177)))
+	print(bin_to_txt(long_to_flex(9_223_372_036_854_775_807)))
 	# print(bin_to_txt(long_to_flex(92233720368547758079418)))
 	# print('10000110_00001101_00100000_00000000_00010001_01010001_01101001_00000011_00010110_00011100_00001010_11001010')
 
