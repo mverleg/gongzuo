@@ -1,0 +1,8 @@
+
+* Deal with negative numbers
+* For easy/fast algorithm: there should be a continuation if the first bit is 0 to simplify calculation, and bytes should be stored from most to least significant.
+* For preserving ordering: there should be a continuation if the first bit is 1, and bytes should also be stored from most to least significant.
+* I think it's better to go for the easy algorithm, because ordering is not very useful since it only works for same-length numbers.
+* Note that it's possible to pad the number by prepending ?0000000-bytes on the left.
+
+
