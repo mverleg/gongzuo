@@ -1,4 +1,7 @@
 
+DATAPERBYTE = LASTBYTE = 1 << 7
+NEGATIVE = 1 << 6
+
 
 def nr_to_bintxt(nr):
 	txt = ''

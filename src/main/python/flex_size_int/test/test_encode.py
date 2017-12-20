@@ -1,9 +1,6 @@
 
 from encode import long_to_flex
-
-
-LASTBYTE = 128
-NEGATIVE = 64
+from utils import LASTBYTE, NEGATIVE
 
 
 def test_long_to_flex():
