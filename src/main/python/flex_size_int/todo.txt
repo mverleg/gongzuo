@@ -1,4 +1,6 @@
 
 * Add option to shift bits in first byte
 * Add option to zero-pad the number?
+* Add unsigned versions!
+
 
