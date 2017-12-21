@@ -2,6 +2,9 @@
 Storage format
 ===============================
 
+Signed
+-------------------------------
+
 Integers are stored in blocks of bytes (8 bits each), as follows:
 
 * The first bit of every byte indicates whether there is a next byte, ``0`` being yes and ``1`` being no.
@@ -11,6 +14,11 @@ Integers are stored in blocks of bytes (8 bits each), as follows:
 * The first byte may be shifted by up to 7 bits. This leaves between 2 and 8 bits for storage or between 0 and 6 for the number, on the least significant side.
 * Storage is big-endian.
 * Byte ``11000000`` is the only invalid value (since ``-0`` is the same as ``+0``).
+
+Unsigned
+-------------------------------
+
+Unsigned integers are stored the same way, except that the sign bit is used for data.
 
 Examples
 -------------------------------
