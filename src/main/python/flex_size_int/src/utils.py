@@ -1,30 +1,28 @@
 
+from math import log, ceil
+
+
 DATAPERBYTE = LASTBYTE = 1 << 7
 NEGATIVE = 1 << 6
 
 
-def nr_to_bintxt(nr):
-	txt = ''
-	# Calculate integer power
-	twofac = 1
-	while twofac <= nr:
-		twofac *= 2
-	# Find the binary digits
-	while twofac > 1:
-		print(twofac)
-		twofac //= 2
-		if nr >= twofac:
-			txt += '1'
-			nr -= twofac
-		else:
-			txt += '0'
-	# Add underscores for readability
-	ustxt = ''
-	while len(txt) > 7:
-		ustxt = '_' + txt[-7:] + ustxt
-		txt = txt[:-7]
-	ustxt = txt + ustxt
-	return ustxt
+class InvalidFlexInt(Exception):
+	""" The value 01000000 is not valid flex format (it would have been -0). """
+	
+
+class InvalidShiftSize(Exception):
+	""" The shift size should be positive and long enough to support the data. """
+
+
+class BitShift(object):
+	def __init__(self, shift_bit_cnt, data):
+		self.amt = int(shift_bit_cnt)
+		self.data = list(data)
+		assert all(0 <= d < 256 for d in data)
+		min_shift = 8 * (len(self.data) - 1) + int(ceil(log(self.data[-1], 2)))
+		if self.amt < min_shift:
+			raise InvalidShiftSize('shift {} too short for data {} (minimum {})'.format(
+				self.amt, self.data, min_shift))
 
 
 def bin_to_txt(bytes):
@@ -53,6 +51,5 @@ if __name__ == '__main__':
 	print(nr_to_bintxt(25))
 	print(nr_to_bintxt(115))
 	print(nr_to_bintxt(922337213615477180794186))
-
 
 

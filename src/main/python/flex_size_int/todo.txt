@@ -1,6 +1,7 @@
 
+#TODO: do shifts for unsigned first
+
 * Add option to shift bits in first byte
 * Add option to zero-pad the number?
 * Make a fast C version (in Rust)
-
 

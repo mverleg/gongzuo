@@ -1,6 +1,4 @@
-
-from exception import InvalidFlexInt
-from utils import NEGATIVE, DATAPERBYTE, LASTBYTE
+from utils import NEGATIVE, DATAPERBYTE, LASTBYTE, InvalidFlexInt
 
 
 def flex_to_long(bytes):

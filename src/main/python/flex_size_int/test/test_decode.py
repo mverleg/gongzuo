@@ -1,8 +1,7 @@
+from pytest import raises
 
 from decode import flex_to_long, flex_to_ulong
-from encode import ulong_to_flex
-from exception import InvalidFlexInt
-from utils import LASTBYTE, NEGATIVE, DATAPERBYTE
+from utils import LASTBYTE, NEGATIVE, DATAPERBYTE, InvalidFlexInt
 
 
 def test_flex_to_long():
@@ -18,22 +17,18 @@ def test_flex_to_long():
 
 
 def test_invalid_flex_to_long():
-	try:
+	with raises(InvalidFlexInt):
 		flex_to_long([LASTBYTE + NEGATIVE])
-	except InvalidFlexInt:
-		""" Passed """
-	else:
-		raise AssertionError("This invalid pattern should have caused an error.")
 
 
 def test_flex_to_ulong():
-	assert flex_to_ulong( [LASTBYTE]) == 0
-	assert flex_to_ulong( [63 + LASTBYTE]) == 63
-	assert flex_to_ulong( [64 + LASTBYTE]) == 64
-	assert flex_to_ulong( [127 + LASTBYTE]) == 127
-	assert flex_to_ulong( [DATAPERBYTE - 1, DATAPERBYTE - 1 + LASTBYTE]) == 16383
-	assert flex_to_ulong( [1, 0, LASTBYTE]) == 16384
-	assert flex_to_ulong( [8, 0, 0, LASTBYTE]) == 2**24
-	assert flex_to_ulong( [1, 0, 0, 0, 0, 0, 0, LASTBYTE]) == 2**49
+	assert flex_to_ulong([LASTBYTE]) == 0
+	assert flex_to_ulong([63 + LASTBYTE]) == 63
+	assert flex_to_ulong([64 + LASTBYTE]) == 64
+	assert flex_to_ulong([127 + LASTBYTE]) == 127
+	assert flex_to_ulong([DATAPERBYTE - 1, DATAPERBYTE - 1 + LASTBYTE]) == 16383
+	assert flex_to_ulong([1, 0, LASTBYTE]) == 16384
+	assert flex_to_ulong([8, 0, 0, LASTBYTE]) == 2**24
+	assert flex_to_ulong([1, 0, 0, 0, 0, 0, 0, LASTBYTE]) == 2**49
 
 
