@@ -50,7 +50,7 @@ def ulong_to_flex(nr, shift=None):
 		nr >>= 7
 	# Set the first bit of last byte to 1
 	bytes[-1] += LASTBYTE
-	# Add the shift data to the left
+	# Add the shift data to the leftExpr
 	# TODO
 	return bytes
 
