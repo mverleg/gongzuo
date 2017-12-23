@@ -1,6 +1,6 @@
-package jit.code.cmds
+package jit.code
 
-import jit.code.Code
+import jit.common.Code
 
 class IfCode(public val condition: Code<Boolean>, public val thenCode: Code<Int>, public val elseCode: Code<Int>): Code<Int> {
 //

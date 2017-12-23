@@ -1,6 +1,6 @@
-package jit.code.cmds
+package jit.code
 
-import jit.code.Code
+import jit.common.Code
 import jit.common.Name
 
 class FunDefCode(public val name: Name, public val body: Code<Int>) {

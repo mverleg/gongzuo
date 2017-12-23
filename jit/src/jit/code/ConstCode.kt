@@ -1,6 +1,6 @@
-package jit.code.cmds
+package jit.code
 
-import jit.code.Code
+import jit.common.Code
 
 class ConstCode(val value: Int): Code<Int> {
 }

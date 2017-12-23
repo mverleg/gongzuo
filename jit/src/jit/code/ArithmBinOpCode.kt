@@ -1,13 +1,8 @@
-package jit.code.cmds
+package jit.code
 
-import jit.code.Code
-import jit.code.SourceVisitor
+import jit.common.Code
 
 class ArithmBinOp(var op: ArithmBinOpType, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
-    override fun accept(visitor: SourceVisitor) {
-        visitor.compile(this)
-    }
-
     enum class ArithmBinOpType {
         ADD,
         SUB,
@@ -53,10 +48,6 @@ class ArithmBinOp(var op: ArithmBinOpType, val leftCode: Code<Int>, val rightCod
 }
 
 class ArithmUnOp(var op: ArithmUnOpType, val code: Code<Int>): Code<Int> {
-    override fun accept(compiler: SourceVisitor) {
-        return compiler.compile(this, op, visitor.visit(code))
-    }
-
     enum class ArithmUnOpType {
         NEG,
         SQR,

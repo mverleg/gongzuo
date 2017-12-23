@@ -1,6 +1,6 @@
-package jit.code.cmds
+package jit.code
 
-import jit.code.Code
+import jit.common.Code
 
 class LogicOpCode(var op: LogicOpType, val left: Code<Int>, val right: Code<Int>): Code<Boolean> {
     enum class LogicOpType {

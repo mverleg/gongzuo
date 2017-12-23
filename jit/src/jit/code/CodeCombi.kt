@@ -1,7 +1,7 @@
-package jit.code.cmds
+package jit.code
 
-import jit.code.Code
-import jit.code.Statement
+import jit.common.Code
+import jit.common.Statement
 
 /**
  * Some statements followed by an expression.
