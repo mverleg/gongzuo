@@ -10,11 +10,11 @@ import jit.ast.*
 // todo: make every prelim expression count it's calls (but not necessarily have the same cutoff)
 
 fun main(args: Array<String>) {
-    val pack = Package(listOf(
+    val source = Package(listOf(
         FunDef(Name("main"), FunCall(Name("call_me"))),
         FunDef(Name("call_me"), ArithmOp(ArithmOp.ArithmOpType.ADD, Const(5), Const(8)))
     ))
-    Processor(pack).run()
+//    Processor(pack).run()
 }
 
 

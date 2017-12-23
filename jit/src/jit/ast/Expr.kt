@@ -11,11 +11,11 @@ interface Expr<RT> {
     fun optcomp(prelimExec: PrelimExec<RT>): OptExec<RT>
 }
 
-interface IntExpr: Expr<Int>, PrelimExec<Int>, OptExec<Int> {
+interface IntExpr: Expr<Int> {
 
 }
 
-interface BoolExpr: Expr<Boolean>, PrelimExec<Boolean>, OptExec<Boolean> {
+interface BoolExpr: Expr<Boolean> {
 
 }
 
