@@ -1,6 +1,7 @@
 package jit
 
-import jit.ast.*
+import jit.code.*
+import jit.common.Name
 
 // todo: rewrite: store the benchmark data outside the preliminary-compiled object (perhaps pass it in)
 // todo: how to connect preliminary compiled versions to final ones? is that even necessary? not really if the benchmark data is separate

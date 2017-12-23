@@ -1,7 +1,7 @@
 package jit
 
-import jit.ast.FunDef
-import jit.ast.Name
+import jit.code.FunDef
+import jit.common.Name
 import jit.comp.Exec
 import jit.comp.FunDefExec
 

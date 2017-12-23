@@ -1,9 +1,10 @@
 package jit
 
-import jit.ast.Package
-import jit.ast.FunDef
-import jit.ast.Name
+import jit.code.Package
+import jit.code.FunDef
+import jit.common.Name
 import jit.comp.FunDefExec
+import jit.comp.PreCompiler
 import jit.comp.ToCompExec
 
 val MAIN_NAME = Name("main")
@@ -17,9 +18,10 @@ class JIT(val pack: Package) {
 
     fun run() {
         val blocks: MutableMap<Name, FunDefExec> = HashMap<Name, FunDefExec>();
+        var preComp = PreCompiler()
         for (fn: FunDef in pack) {
             check(!blocks.containsKey(fn.name), { "Cannot have two functions with the same name" })
-            blocks.put(fn.name, ToCompExec(fn.body))
+            blocks.put(fn.name, ToCompExec(preComp, fn.body))
         }
         val main: FunDefExec? = blocks.getOrDefault(MAIN_NAME, null)
         check(main != null)

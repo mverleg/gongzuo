@@ -1,5 +1,6 @@
-package jit.ast
+package jit.code
 
+import jit.common.Name
 import jit.comp.OptExec
 import jit.comp.PrelimExec
 import jit.comp.VarExec

@@ -1,4 +1,4 @@
-package jit.ast
+package jit.code
 
 import jit.comp.OptExec
 import jit.comp.PrelimExec

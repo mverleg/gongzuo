@@ -1,4 +1,4 @@
-package jit.ast
+package jit.code
 
 class Package(val funs: List<FunDef>): Iterable<FunDef> {
 
