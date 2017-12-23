@@ -1,6 +1,8 @@
 package jit.code
 
 import jit.common.Code
+import jit.common.Compiler
+import jit.common.InstructionList
 
 class IfCode(public val condition: Code<Boolean>, public val thenCode: Code<Int>, public val elseCode: Code<Int>): Code<Int> {
 //
@@ -20,6 +22,10 @@ class IfCode(public val condition: Code<Boolean>, public val thenCode: Code<Int>
 //    override fun optcomp(prelimExec: PrelimExec<Int>): OptExec<Int> {
 //        return OptIf(condition.optcomp(conditionExec), thenCode.optcomp(thenExec), elseCode.optcomp(elseExec), prelimIf.getTrueRatio())
 //    }
+
+    override fun toCompiler(compiler: Compiler): InstructionList {
+        return compiler.compile(this)
+    }
 }
 
 

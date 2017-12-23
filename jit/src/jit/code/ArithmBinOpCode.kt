@@ -1,6 +1,8 @@
 package jit.code
 
 import jit.common.Code
+import jit.common.Compiler
+import jit.common.InstructionList
 
 class ArithmBinOp(var op: ArithmBinOpType, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
     enum class ArithmBinOpType {
@@ -9,6 +11,10 @@ class ArithmBinOp(var op: ArithmBinOpType, val leftCode: Code<Int>, val rightCod
         MUL,
         DIV,
         MOD,
+    }
+
+    override fun toCompiler(compiler: Compiler): InstructionList {
+        return compiler.compile(this)
     }
 
 //    var leftPrelimExec: PrelimExec<Int>? = null
@@ -51,5 +57,9 @@ class ArithmUnOp(var op: ArithmUnOpType, val code: Code<Int>): Code<Int> {
     enum class ArithmUnOpType {
         NEG,
         SQR,
+    }
+
+    override fun toCompiler(compiler: Compiler): InstructionList {
+        return compiler.compile(this)
     }
 }

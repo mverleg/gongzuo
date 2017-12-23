@@ -1,6 +1,8 @@
 package jit.code
 
 import jit.common.Code
+import jit.common.Compiler
+import jit.common.InstructionList
 
 class LogicOpCode(var op: LogicOpType, val left: Code<Int>, val right: Code<Int>): Code<Boolean> {
     enum class LogicOpType {
@@ -10,6 +12,10 @@ class LogicOpCode(var op: LogicOpType, val left: Code<Int>, val right: Code<Int>
         GT,
         LTE,
         GTE,
+    }
+
+    override fun toCompiler(compiler: Compiler): InstructionList {
+        return compiler.compile(this)
     }
 //
 //    override fun precomp(): PrelimExec<Boolean> {
