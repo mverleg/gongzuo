@@ -4,7 +4,6 @@ import jit.code.PackageCode
 import jit.code.FunDefCode
 import jit.common.Name
 import jit.comp.FunDefExec
-import jit.comp.PreCompiler
 import jit.comp.ToCompExec
 import jit.hardware.Processor
 

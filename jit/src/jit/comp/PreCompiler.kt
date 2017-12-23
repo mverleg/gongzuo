@@ -12,25 +12,25 @@ import jit.common.Exec
  * Note that in reality, this would be two steps: convert AST to debug form,
  * and compile this form to assembly.
  */
-class PreCompiler: SourceVisitor {
-    /**
-     * Compile the source in a preliminary way, with benchmarking.
-     */
-    fun <RT> visit(code: Code<RT>): Exec<RT> {
-        return code.precompile()
-    }
-}
+//class PreCompiler: SourceVisitor {
+//    /**
+//     * Compile the source in a preliminary way, with benchmarking.
+//     */
+//    fun <RT> visit(code: Code<RT>): Exec<RT> {
+//        return code.precompile()
+//    }
+//}
 
 /**
  * Similar to {@link PreCompiler} but optimized
  */
-class OptCompiler: SourceVisitor {
-    /**
-     * Compile the source in an optimized way, using the benchmarks.
-     */
-    fun <RT> visit(code: Code<RT>, prelimExec: PrelimExec<RT>): Exec<RT> {
-        return code.optcomp(prelimExec)
-    }
-}
+//class OptCompiler: SourceVisitor {
+//    /**
+//     * Compile the source in an optimized way, using the benchmarks.
+//     */
+//    fun <RT> visit(code: Code<RT>, prelimExec: PrelimExec<RT>): Exec<RT> {
+//        return code.optcomp(prelimExec)
+//    }
+//}
 
 

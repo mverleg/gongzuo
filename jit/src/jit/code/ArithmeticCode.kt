@@ -1,17 +1,12 @@
 package jit.code
 
+import jit.common.BinaryArithmOperation
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.InstructionList
+import jit.common.UnaryArithmOperation
 
-class ArithmBinOp(var op: ArithmBinOpType, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
-    enum class ArithmBinOpType {
-        ADD,
-        SUB,
-        MUL,
-        DIV,
-        MOD,
-    }
+class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
 
     override fun toCompiler(compiler: Compiler): InstructionList {
         return compiler.compile(this)
@@ -44,21 +39,16 @@ class ArithmBinOp(var op: ArithmBinOpType, val leftCode: Code<Int>, val rightCod
 //            throw IllegalStateException("Compile before running")
 //        }
 //        when (op) {
-//            ArithmBinOp.ArithmBinOpType.ADD -> return leftExec!!.run(proc) + rightExec!!.run(proc)
-//            ArithmBinOp.ArithmBinOpType.SUB -> return leftExec!!.run(proc) - rightExec!!.run(proc)
-//            ArithmBinOp.ArithmBinOpType.MUL -> return leftExec!!.run(proc) * rightExec!!.run(proc)
-//            ArithmBinOp.ArithmBinOpType.DIV -> return leftExec!!.run(proc) / rightExec!!.run(proc)
-//            ArithmBinOp.ArithmBinOpType.MOD -> return leftExec!!.run(proc) % rightExec!!.run(proc)
+//            BinArithmCode.ArithmBinOpType.ADD -> return leftExec!!.run(proc) + rightExec!!.run(proc)
+//            BinArithmCode.ArithmBinOpType.SUB -> return leftExec!!.run(proc) - rightExec!!.run(proc)
+//            BinArithmCode.ArithmBinOpType.MUL -> return leftExec!!.run(proc) * rightExec!!.run(proc)
+//            BinArithmCode.ArithmBinOpType.DIV -> return leftExec!!.run(proc) / rightExec!!.run(proc)
+//            BinArithmCode.ArithmBinOpType.MOD -> return leftExec!!.run(proc) % rightExec!!.run(proc)
 //        }
 //    }
 }
 
-class ArithmUnOp(var op: ArithmUnOpType, val code: Code<Int>): Code<Int> {
-    enum class ArithmUnOpType {
-        NEG,
-        SQR,
-    }
-
+class UnaryArithmCode(var op: UnaryArithmOperation, val code: Code<Int>): Code<Int> {
     override fun toCompiler(compiler: Compiler): InstructionList {
         return compiler.compile(this)
     }
