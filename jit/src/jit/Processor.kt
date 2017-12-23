@@ -1,6 +1,6 @@
 package jit
 
-import jit.code.FunDef
+import jit.code.cmds.FunDefCode
 import jit.common.Name
 import jit.comp.Exec
 import jit.comp.FunDefExec
@@ -14,7 +14,7 @@ class Processor(val blocks: MutableMap<Name, FunDefExec>) {
     // TODO: replace by stack
     var currentBlock: Exec<Int>? = null;
 
-    fun replace(newCode: FunDef) {
+    fun replace(newCode: FunDefCode) {
         throw NotImplementedError()
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -1,9 +1,9 @@
 package jit.comp
 
 import jit.Processor
-import jit.code.Var
+import jit.code.cmds.VarCode
 
-class VarExec(val varElem: Var): PrelimExec<Int>, OptExec<Int> {
+class VarExec(val varCodeElem: VarCode): PrelimExec<Int>, OptExec<Int> {
 
     override fun run(proc: Processor): Int {
         throw NotImplementedError()

@@ -1,6 +1,6 @@
 package jit.comp
 
-import jit.code.Expr
+import jit.code.Code
 
 /**
  * This is the compiler which converts individual units to assembly.
@@ -11,23 +11,25 @@ import jit.code.Expr
  * Note that in reality, this would be two steps: convert AST to debug form,
  * and compile this form to assembly.
  */
-class PreCompiler {
+class PreCompiler: SourceVisitor {
     /**
      * Compile the source in a preliminary way, with benchmarking.
      */
-    fun <RT> precompile(expr: Expr<RT>): Exec<RT> {
-        return expr.precomp()
+    fun <RT> visit(code: Code<RT>): Exec<RT> {
+        return code.precompile()
     }
 }
 
 /**
  * Similar to {@code PreCompiler} but optimized
  */
-class OptCompiler {
+class OptCompiler: SourceVisitor {
     /**
      * Compile the source in an optimized way, using the benchmarks.
      */
-    fun <RT> optimize(expr: Expr<RT>, prelimExec: PrelimExec<RT>): Exec<RT> {
-        return expr.optcomp(prelimExec)
+    fun <RT> visit(code: Code<RT>, prelimExec: PrelimExec<RT>): Exec<RT> {
+        return code.optcomp(prelimExec)
     }
 }
+
+

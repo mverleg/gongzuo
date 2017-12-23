@@ -1,7 +1,7 @@
 package jit
 
-import jit.code.Package
-import jit.code.FunDef
+import jit.code.cmds.PackageCode
+import jit.code.cmds.FunDefCode
 import jit.common.Name
 import jit.comp.FunDefExec
 import jit.comp.PreCompiler
@@ -14,12 +14,12 @@ val MAIN_NAME = Name("main")
  *
  * This operates on definitions and links between them, not looking into individual functions.
  */
-class JIT(val pack: Package) {
+class JIT(val pack: PackageCode) {
 
     fun run() {
         val blocks: MutableMap<Name, FunDefExec> = HashMap<Name, FunDefExec>();
         var preComp = PreCompiler()
-        for (fn: FunDef in pack) {
+        for (fn: FunDefCode in pack) {
             check(!blocks.containsKey(fn.name), { "Cannot have two functions with the same name" })
             blocks.put(fn.name, ToCompExec(preComp, fn.body))
         }
