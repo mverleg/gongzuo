@@ -1,8 +1,8 @@
-package jit
+package jit.hardware
 
-import jit.code.cmds.FunDefCode
+import jit.code.FunDefCode
 import jit.common.Name
-import jit.comp.Exec
+import jit.common.Exec
 import jit.comp.FunDefExec
 
 /**

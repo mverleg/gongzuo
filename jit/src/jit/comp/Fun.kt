@@ -1,6 +1,7 @@
 package jit.comp
 
-import jit.Processor
+import jit.hardware.Processor
+import jit.common.Exec
 import jit.common.Name
 
 interface FunDefExec: Exec<Int> {

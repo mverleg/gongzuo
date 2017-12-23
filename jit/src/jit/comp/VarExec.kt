@@ -1,7 +1,7 @@
 package jit.comp
 
-import jit.Processor
-import jit.code.cmds.VarCode
+import jit.hardware.Processor
+import jit.code.VarCode
 
 class VarExec(val varCodeElem: VarCode): PrelimExec<Int>, OptExec<Int> {
 

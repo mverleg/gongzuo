@@ -1,6 +1,7 @@
 package jit.comp
 
-import jit.code.Code
+import jit.common.Code
+import jit.common.Exec
 
 /**
  * This is the compiler which converts individual units to assembly.
@@ -21,7 +22,7 @@ class PreCompiler: SourceVisitor {
 }
 
 /**
- * Similar to {@code PreCompiler} but optimized
+ * Similar to {@link PreCompiler} but optimized
  */
 class OptCompiler: SourceVisitor {
     /**

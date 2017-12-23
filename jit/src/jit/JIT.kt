@@ -1,11 +1,12 @@
 package jit
 
-import jit.code.cmds.PackageCode
-import jit.code.cmds.FunDefCode
+import jit.code.PackageCode
+import jit.code.FunDefCode
 import jit.common.Name
 import jit.comp.FunDefExec
 import jit.comp.PreCompiler
 import jit.comp.ToCompExec
+import jit.hardware.Processor
 
 val MAIN_NAME = Name("main")
 

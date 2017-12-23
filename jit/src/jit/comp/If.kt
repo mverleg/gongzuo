@@ -1,6 +1,6 @@
 package jit.comp
 
-import jit.Processor
+import jit.hardware.Processor
 
 class PrelimIf<ET>(val conditionExpr: PrelimExec<Boolean>, val thenExec: PrelimExec<ET>, val elseExec: PrelimExec<ET>): PrelimExec<ET> {
 

@@ -1,14 +1,14 @@
 package jit
 
-import jit.code.cmds.ArithmBinOp
-import jit.code.cmds.ArithmUnOp
-import jit.code.cmds.AssignmentCode
-import jit.code.cmds.CodeCombi
-import jit.code.cmds.ConstCode
-import jit.code.cmds.FunCallCode
-import jit.code.cmds.FunDefCode
-import jit.code.cmds.PackageCode
-import jit.code.cmds.VarCode
+import jit.code.ArithmBinOp
+import jit.code.ArithmUnOp
+import jit.code.AssignmentCode
+import jit.code.CodeCombi
+import jit.code.ConstCode
+import jit.code.FunCallCode
+import jit.code.FunDefCode
+import jit.code.PackageCode
+import jit.code.VarCode
 import jit.common.Name
 
 // todo: rewrite: store the benchmark data outside the preliminary-compiled object (perhaps pass it in)
