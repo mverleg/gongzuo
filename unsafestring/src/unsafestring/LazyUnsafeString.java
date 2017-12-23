@@ -1,7 +1,6 @@
 package unsafestring;
 
 import javax.annotation.Nonnull;
-
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
