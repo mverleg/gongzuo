@@ -1,4 +1,7 @@
 package jit.instructions
 
-class WriteInstruction {
+import jit.common.Instruction
+
+class WriteInstruction: Instruction {
 }
+

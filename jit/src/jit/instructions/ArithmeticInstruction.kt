@@ -1,4 +1,7 @@
 package jit.instructions
 
-class ArithmeticInstruction {
+import jit.common.Instruction
+
+class ArithmeticInstruction: Instruction {
 }
+
