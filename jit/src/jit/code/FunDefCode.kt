@@ -1,9 +1,11 @@
 package jit.code
 
 import jit.common.Code
+import jit.common.HasScope
 import jit.common.Name
 
-class FunDefCode(val body: Code<Int>, val name: Name, val parameters: List<Name>) {
+class FunDefCode(val body: Code<Int>, val name: Name, val parameters: List<Name>): HasScope {
+
     constructor(body: Code<Int>, name: Name): this(body, name, listOf())
 
     fun toText(): CharSequence {

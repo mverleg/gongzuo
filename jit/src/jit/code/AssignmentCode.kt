@@ -3,7 +3,6 @@ package jit.code
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.Instruction
-import jit.common.InstructionList
 import jit.common.Statement
 
 open class AssignmentCode(val variable: VarCode, val value: Code<Int>): Statement<Int> {

@@ -3,6 +3,7 @@ TODO
 ===============================
 
 * I think it'd be educative to make the target instructions more LLVM, possibly even in static single assignment form.
+* The scopes thing is a bit ugly with repeated code; is there a way to have anything HasScope automatically manage that during compilation?
 
 //
 

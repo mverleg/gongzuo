@@ -14,7 +14,7 @@ abstract class FunctionInstruction(val name: Name, val parameters: List<Name>) {
             throw RuntimeInvalidCodeError("function '${name}' takes ${parameters.size} arguments but got ${args.size}")
         }
         for (indx in 0 .. parameters.size - 1) {
-            WriteInstruction(parameters[indx], args[indx]).run(processor)
+            WriteInstruction(parameters[indx], ValueInstruction(args[indx])).run(processor)
         }
     }
 
