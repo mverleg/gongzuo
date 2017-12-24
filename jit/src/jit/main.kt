@@ -1,17 +1,21 @@
 package jit
 
 import jit.code.BinArithmCode
-import jit.code.AssignmentCode
+import jit.code.BinaryLogicCode
 import jit.code.CodeCombi
 import jit.code.ConstCode
+import jit.code.DeclarationCode
 import jit.code.FunCallCode
 import jit.code.FunDefCode
+import jit.code.IfCode
 import jit.code.PackageCode
 import jit.code.UnaryArithmCode
 import jit.code.VarCode
 import jit.common.BinaryArithmOperation
+import jit.common.BinaryNumberLogicOperation
 import jit.common.Name
 import jit.common.UnaryArithmOperation
+import jit.jit.JIT
 
 // todo: rewrite: store the benchmark data outside the preliminary-compiled object (perhaps pass it in)
 // todo: how to connect preliminary compiled versions to final ones? is that even necessary? not really if the benchmark data is separate
@@ -23,13 +27,19 @@ import jit.common.UnaryArithmOperation
 
 fun main(args: Array<String>) {
     val a = VarCode(Name("a"))
+    val b = VarCode(Name("b"))
     val source = PackageCode(listOf(
-            FunDefCode(Name("main"), FunCallCode(Name("call_me"))),
-            FunDefCode(Name("call_me"), CodeCombi(
-                    AssignmentCode(a, UnaryArithmCode(UnaryArithmOperation.SQR, ConstCode(4))),
-                    last=BinArithmCode(BinaryArithmOperation.SUB, a, ConstCode(7))
-            ))
+            FunDefCode(FunCallCode(Name("call_me"), ConstCode(3)), Name("main")),
+            FunDefCode(CodeCombi(
+                    DeclarationCode(a, UnaryArithmCode(UnaryArithmOperation.SQR, ConstCode(4))),
+                    DeclarationCode(b, BinArithmCode(BinaryArithmOperation.SUB, a, ConstCode(7))),
+                    last=IfCode(
+                            BinaryLogicCode(BinaryNumberLogicOperation.GTE, b, ConstCode(10)),
+                            a,
+                            UnaryArithmCode(UnaryArithmOperation.NEG, b))
+            ), Name("call_me"), listOf(Name("arg_one")))
     ))
+    print(source.toText())
     JIT(source).run()
 //    Processor(pack).run()
 }

@@ -1,13 +1,13 @@
 package jit.prelim
 
-import jit.code.BinArithmCode
 import jit.code.AssignmentCode
+import jit.code.BinArithmCode
+import jit.code.BinaryLogicCode
 import jit.code.CodeCombi
 import jit.code.ConstCode
 import jit.code.FunCallCode
 import jit.code.FunDefCode
 import jit.code.IfCode
-import jit.code.BinaryLogicCode
 import jit.code.UnaryArithmCode
 import jit.code.VarCode
 import jit.common.Compiler
@@ -17,7 +17,9 @@ import jit.instructions.FunctionInstruction
 
 class PrelimCompiler: Compiler {
     override fun compile(func: FunDefCode): FunctionInstruction {
-        return func.body.toCompiler(this)
+        return FunctionInstruction(
+                func.body.toCompiler(this)
+        )
     }
 
     override fun compile(binArithmCode: BinArithmCode): InstructionList {

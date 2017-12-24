@@ -1,11 +1,10 @@
-package jit
+package jit.jit
 
-import jit.code.PackageCode
 import jit.code.FunDefCode
+import jit.code.PackageCode
 import jit.common.Name
 import jit.hardware.Processor
 import jit.instructions.FunctionInstruction
-import jit.jit.CompileOnDemand
 import jit.prelim.PrelimCompiler
 
 val MAIN_NAME = Name("main")
@@ -22,6 +21,7 @@ class JIT(val pack: PackageCode) {
         var preComp = PrelimCompiler()
         for (fn: FunDefCode in pack) {
             check(!blocks.containsKey(fn.name), { "Cannot have two functions with the same name" })
+            print(fn.name)
             blocks.put(fn.name, CompileOnDemand(preComp, fn))
         }
         val main: FunctionInstruction? = blocks.getOrDefault(MAIN_NAME, null)

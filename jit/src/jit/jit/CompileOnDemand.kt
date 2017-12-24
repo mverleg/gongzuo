@@ -10,11 +10,11 @@ import jit.prelim.PrelimCompiler
  *
  * I'm assuming here that the {@link Processor} can run the {@link Compiler} without my help.
  */
-class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode): FunctionInstruction {
+class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode): FunctionInstruction(null) {
 
     var assembly: FunctionInstruction? = null
 
-    override fun run(processor: Processor) {
+    fun call(processor: Processor) {
         if (assembly == null) {
             assembly = preComp.compile(funCode)
         }

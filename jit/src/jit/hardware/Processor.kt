@@ -13,7 +13,7 @@ class Processor(val funDeclarations: MutableMap<Name, FunctionInstruction>) {
     }
 
     /**
-     * Replace a function by another one (probably a more compiled one).
+     * Replace a function by another one.
      *
      * TODO: in reality this probably involves updating a lot of references to be able to call directly
      * TODO: I may still implement that, but this 'jump table' would also work, at a performance penalty

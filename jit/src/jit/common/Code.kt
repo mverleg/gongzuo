@@ -6,6 +6,8 @@ interface Code<RT> {
      * so the compiler is responsible for dealing with the data structure.
      */
     fun toCompiler(compiler: Compiler): InstructionList
+
+    fun toText(): CharSequence
 }
 
 interface Statement<RT>: Code<RT> {
