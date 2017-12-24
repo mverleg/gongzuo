@@ -11,7 +11,7 @@ open class AssignmentCode(val variable: VarCode, val value: Code<Int>): Statemen
     }
 
     override fun toText(): CharSequence {
-        val text = StringBuilder(variable.toText()).append(" = ").append(value.toText())
+        val text = StringBuilder(variable.toString()).append(" = ").append(value.toText())
         if (value !is AssignmentCode && value !is DeclarationCode) {
             text.append(";\n\t")
         }

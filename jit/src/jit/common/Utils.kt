@@ -1,7 +1,5 @@
 package jit.common
 
-import java.lang.Math.max
-
 val NAMELIST: List<String> = listOf(
         "red",
         "orange",

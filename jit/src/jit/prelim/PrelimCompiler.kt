@@ -9,9 +9,9 @@ import jit.code.DeclarationCode
 import jit.code.FunCallCode
 import jit.code.FunDefCode
 import jit.code.IfCode
+import jit.code.ReadCode
 import jit.code.ScopedBlock
 import jit.code.UnaryArithmCode
-import jit.code.VarCode
 import jit.common.BinaryArithmOperation
 import jit.common.Compiler
 import jit.common.Instruction
@@ -47,10 +47,6 @@ class PrelimCompiler: Compiler {
         return PrelimFunctionInstruction(instr, func.name, func.parameters)
     }
 
-    override fun compile(varCode: VarCode): Instruction<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun compile(binArithmCode: BinArithmCode): Instruction<Int> {
         return ArithmeticInstruction(
                 binArithmCode.operation,
@@ -62,7 +58,13 @@ class PrelimCompiler: Compiler {
     override fun compile(unaryArithmCode: UnaryArithmCode): Instruction<Int> {
         when (unaryArithmCode.operation) {
             UnaryArithmOperation.NEG -> return this.compile(BinArithmCode(BinaryArithmOperation.SUB, ConstCode(0), unaryArithmCode.code))
-            UnaryArithmOperation.SQR -> return this.compile(BinArithmCode(BinaryArithmOperation.MUL, unaryArithmCode.code, unaryArithmCode.code))
+            UnaryArithmOperation.SQR -> {
+                val tmpVar = scopes.nearest().createTempVar()
+                return this.compile(CodeCombi(
+                    AssignmentCode(tmpVar, unaryArithmCode.code),
+                    last=BinArithmCode(BinaryArithmOperation.MUL, ReadCode(tmpVar), ReadCode(tmpVar))
+                ))
+            }
         }
     }
 
@@ -104,6 +106,10 @@ class PrelimCompiler: Compiler {
     }
 
     override fun compile(assignmentCode: AssignmentCode): Instruction<Int> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun compile(readCode: ReadCode): Instruction<Int> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

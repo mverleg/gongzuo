@@ -9,20 +9,20 @@ import jit.code.DeclarationCode
 import jit.code.FunCallCode
 import jit.code.FunDefCode
 import jit.code.IfCode
+import jit.code.ReadCode
 import jit.code.ScopedBlock
 import jit.code.UnaryArithmCode
-import jit.code.VarCode
 import jit.instructions.FunctionInstruction
 
 interface Compiler {
     fun compile(func: FunDefCode): FunctionInstruction
     fun compile(binArithmCode: BinArithmCode): Instruction<Int>
     fun compile(unaryArithmCode: UnaryArithmCode): Instruction<Int>
-    fun compile(varCode: VarCode): Instruction<Int>
     fun compile(binaryLogicCode: BinaryLogicCode): Instruction<Boolean>
     fun compile(ifCode: IfCode): Instruction<Int>
     fun compile(constCode: ConstCode): Instruction<Int>
     fun compile(codeCombi: CodeCombi): InstructionList
+    fun compile(readCode: ReadCode): Instruction<Int>
     fun compile(assignmentCode: AssignmentCode): Instruction<Int>
     fun compile(declarationCode: DeclarationCode): Instruction<Int>
     fun compile(scopedBlock: ScopedBlock): Instruction<Int>

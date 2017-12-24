@@ -1,5 +1,6 @@
 package jit.common
 
+import jit.code.VarCode
 import jit.instructions.DeallocateInstruction
 
 class Scope(val context: HasScope) {
@@ -20,13 +21,16 @@ class Scope(val context: HasScope) {
         return deallocations
     }
 
-    fun createTempVar() {
-        fun gen() {
-            generateIndex
+    // TODO: this can be called before normal variables are all declared, leading to conflicts
+    fun createTempVar(): VarCode {
+        while (true) {
+            val name = Name(genName(generateIndex))
+            generateIndex++
+            if (name !in variables) {
+                this.register(name)
+                return VarCode(name)
+            }
         }
-        var genName = "tmp"
-
-
     }
 }
 
