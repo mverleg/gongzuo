@@ -28,7 +28,7 @@ class JIT(val pack: PackageCode) {
         }
         val main: FunctionInstruction? = blocks.getOrDefault(MAIN_NAME, null)
         check(main != null)
-        Processor(blocks).call(MAIN_NAME)
+        Processor(blocks).call(MAIN_NAME, listOf())
     }
 }
 

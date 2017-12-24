@@ -3,12 +3,13 @@ package jit.code
 import jit.common.BinaryArithmOperation
 import jit.common.Code
 import jit.common.Compiler
+import jit.common.Instruction
 import jit.common.InstructionList
 import jit.common.UnaryArithmOperation
 
 class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
 
-    override fun toCompiler(compiler: Compiler): InstructionList {
+    override fun toCompiler(compiler: Compiler): Instruction<Int> {
         return compiler.compile(this)
     }
 
@@ -59,7 +60,7 @@ class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val 
 }
 
 class UnaryArithmCode(var op: UnaryArithmOperation, val code: Code<Int>): Code<Int> {
-    override fun toCompiler(compiler: Compiler): InstructionList {
+    override fun toCompiler(compiler: Compiler): Instruction<Int> {
         return compiler.compile(this)
     }
 

@@ -3,11 +3,12 @@ package jit.code
 import jit.common.BinaryNumberLogicOperation
 import jit.common.Code
 import jit.common.Compiler
+import jit.common.Instruction
 import jit.common.InstructionList
 
 class BinaryLogicCode(var op: BinaryNumberLogicOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Boolean> {
 
-    override fun toCompiler(compiler: Compiler): InstructionList {
+    override fun toCompiler(compiler: Compiler): Instruction<Boolean> {
         return compiler.compile(this)
     }
 

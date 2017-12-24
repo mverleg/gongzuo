@@ -4,7 +4,7 @@ import jit.instructions.FunctionInstruction
 
 interface Processor {
     val funDeclarations: MutableMap<Name, FunctionInstruction>
-    fun call(funName: Name, vararg args: Int): Int
+    fun call(funName: Name, args: List<Int>): Int
     /**
      * Replace a function by another one.
      *

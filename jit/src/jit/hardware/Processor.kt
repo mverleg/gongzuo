@@ -10,12 +10,12 @@ import jit.instructions.FunctionInstruction
  * since the physical processor also cannot do that; the {@link JIT} must do this.
  */
 class Processor(override val funDeclarations: MutableMap<Name, FunctionInstruction>): Processor {
-    override fun call(funName: Name, vararg args: Int): Int {
+    override fun call(funName: Name, args: List<Int>): Int {
         val func = funDeclarations.get(funName)
         if (func == null) {
             throw RuntimeInvalidCodeError("trying to invoke non-existent function '${funName}'")
         }
-        return func.invoke(this, *args)
+        return func.invoke(this, args)
     }
 
     /**

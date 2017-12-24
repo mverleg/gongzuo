@@ -16,7 +16,7 @@ class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode):
 
     var isCompiled = false
 
-    override fun invoke(processor: Processor, vararg args: Int): Int {
+    override fun invoke(processor: Processor, args: List<Int>): Int {
         check(!isCompiled, { "Function ${name} is already compiled; it should not be compiled twice." })
         isCompiled = true
         /* Compile the function in preliminary mode. */
@@ -24,7 +24,7 @@ class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode):
         /* Replace this placeholder by the compiled version. */
         processor.replace(funCode.name, assembly)
         /* Call the original function, passing on the arguments. */
-        return processor.call(funCode.name, *args)
+        return processor.call(funCode.name, args)
     }
 }
 

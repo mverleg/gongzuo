@@ -14,14 +14,14 @@ import jit.instructions.FunctionInstruction
 
 interface Compiler {
     fun compile(func: FunDefCode): FunctionInstruction
-    fun compile(binArithmCode: BinArithmCode): InstructionList
-    fun compile(unaryArithmCode: UnaryArithmCode): InstructionList
-    fun compile(varCode: VarCode): InstructionList
-    fun compile(binaryLogicCode: BinaryLogicCode): InstructionList
-    fun compile(ifCode: IfCode): InstructionList
-    fun compile(constCode: ConstCode): InstructionList
+    fun compile(binArithmCode: BinArithmCode): Instruction<Int>
+    fun compile(unaryArithmCode: UnaryArithmCode): Instruction<Int>
+    fun compile(varCode: VarCode): Instruction<Int>
+    fun compile(binaryLogicCode: BinaryLogicCode): Instruction<Boolean>
+    fun compile(ifCode: IfCode): Instruction<Int>
+    fun compile(constCode: ConstCode): Instruction<Int>
     fun <RT> compile(codeCombi: CodeCombi<RT>): InstructionList
-    fun compile(assignmentCode: AssignmentCode): InstructionList
+    fun compile(assignmentCode: AssignmentCode): Instruction<Int>
     fun compile(funCallCode: FunCallCode): Instruction<Int>
 }
 

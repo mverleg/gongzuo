@@ -17,43 +17,48 @@ import jit.instructions.ArithmeticInstruction
 import jit.instructions.CallInstruction
 import jit.instructions.FunctionInstruction
 import jit.instructions.PrelimFunctionInstruction
+import jit.instructions.ValueInstruction
 
 class PrelimCompiler: Compiler {
     override fun compile(func: FunDefCode): FunctionInstruction {
         return PrelimFunctionInstruction(func.body.toCompiler(this), func.name, func.parameters)
     }
 
-    override fun compile(binArithmCode: BinArithmCode): InstructionList {
+    override fun compile(binArithmCode: BinArithmCode): Instruction<Int> {
         return InstructionList(
                 ArithmeticInstruction()
         )
     }
 
-    override fun compile(unaryArithmCode: UnaryArithmCode): InstructionList {
+    override fun compile(unaryArithmCode: UnaryArithmCode): Instruction<Int> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun compile(varCode: VarCode): InstructionList {
+    override fun compile(varCode: VarCode): Instruction<Int> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun compile(binaryLogicCode: BinaryLogicCode): InstructionList {
+    override fun compile(binaryLogicCode: BinaryLogicCode): Instruction<Boolean> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun compile(ifCode: IfCode): InstructionList {
+    override fun compile(ifCode: IfCode): Instruction<Int> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun compile(constCode: ConstCode): InstructionList {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun compile(constCode: ConstCode): Instruction<Int> {
+        return ValueInstruction(constCode.value)
     }
 
     override fun <RT> compile(codeCombi: CodeCombi<RT>): InstructionList {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val instructions: MutableList<Instruction<Int>> = mutableListOf()
+        for (code in codeCombi) {
+            instructions.add(code.toCompiler(this))
+        }
+        return InstructionList(instructions.first(), *instructions.subList(1, instructions.size).toTypedArray())
     }
 
-    override fun compile(assignmentCode: AssignmentCode): InstructionList {
+    override fun compile(assignmentCode: AssignmentCode): Instruction<Int> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
