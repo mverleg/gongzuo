@@ -4,17 +4,16 @@ import jit.common.BinaryArithmOperation
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.Instruction
-import jit.common.InstructionList
 import jit.common.UnaryArithmOperation
 
-class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
+class BinArithmCode(var operation: BinaryArithmOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
 
     override fun toCompiler(compiler: Compiler): Instruction<Int> {
         return compiler.compile(this)
     }
 
     override fun toText(): String {
-        when (op) {
+        when (operation) {
             BinaryArithmOperation.ADD -> return "(" + leftCode.toText() + " + " + rightCode.toText() + ")"
             BinaryArithmOperation.SUB -> return "(" + leftCode.toText() + " - " + rightCode.toText() + ")"
             BinaryArithmOperation.MUL -> return "(" + leftCode.toText() + " * " + rightCode.toText() + ")"
@@ -49,7 +48,7 @@ class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val 
 //        if (leftPrelimExec == null || rightPrelimExec == null) {
 //            throw IllegalStateException("Compile before running")
 //        }
-//        when (op) {
+//        when (operation) {
 //            BinArithmCode.ArithmBinOpType.ADD -> return leftExec!!.run(proc) + rightExec!!.run(proc)
 //            BinArithmCode.ArithmBinOpType.SUB -> return leftExec!!.run(proc) - rightExec!!.run(proc)
 //            BinArithmCode.ArithmBinOpType.MUL -> return leftExec!!.run(proc) * rightExec!!.run(proc)
@@ -59,13 +58,13 @@ class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val 
 //    }
 }
 
-class UnaryArithmCode(var op: UnaryArithmOperation, val code: Code<Int>): Code<Int> {
+class UnaryArithmCode(var operation: UnaryArithmOperation, val code: Code<Int>): Code<Int> {
     override fun toCompiler(compiler: Compiler): Instruction<Int> {
         return compiler.compile(this)
     }
 
     override fun toText(): String {
-        when (op) {
+        when (operation) {
             UnaryArithmOperation.NEG -> return "-("  + code.toText() + ")"
             UnaryArithmOperation.SQR -> return  "("  + code.toText() + ")^2"
         }

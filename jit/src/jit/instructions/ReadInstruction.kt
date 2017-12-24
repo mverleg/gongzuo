@@ -1,11 +1,16 @@
 package jit.instructions
 
 import jit.common.Instruction
+import jit.common.Name
 import jit.hardware.Processor
 
-class ReadInstruction: Instruction<Int> {
+class ReadInstruction(val name: Name): Instruction<Int> {
     override fun run(processor: Processor): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun toText(): CharSequence {
+        return "%${name}"
     }
 }
 

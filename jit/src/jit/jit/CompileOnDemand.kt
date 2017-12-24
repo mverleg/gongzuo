@@ -21,10 +21,15 @@ class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode):
         isCompiled = true
         /* Compile the function in preliminary mode. */
         val assembly = preComp.compile(funCode)
+        print(assembly.toText())
         /* Replace this placeholder by the compiled version. */
         processor.replace(funCode.name, assembly)
         /* Call the original function, passing on the arguments. */
         return processor.call(funCode.name, args)
+    }
+
+    override fun toText(): CharSequence {
+        return "call @COMPILE('{$name}')"
     }
 }
 

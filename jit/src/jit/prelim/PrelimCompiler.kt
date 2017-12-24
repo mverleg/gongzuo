@@ -10,10 +10,11 @@ import jit.code.FunDefCode
 import jit.code.IfCode
 import jit.code.UnaryArithmCode
 import jit.code.VarCode
+import jit.common.BinaryArithmOperation
 import jit.common.Compiler
 import jit.common.Instruction
 import jit.common.InstructionList
-import jit.instructions.ArithmeticInstruction
+import jit.common.UnaryArithmOperation
 import jit.instructions.CallInstruction
 import jit.instructions.FunctionInstruction
 import jit.instructions.PrelimFunctionInstruction
@@ -25,13 +26,14 @@ class PrelimCompiler: Compiler {
     }
 
     override fun compile(binArithmCode: BinArithmCode): Instruction<Int> {
-        return InstructionList(
-                ArithmeticInstruction()
-        )
+        TODO("not implemented") //To change bod of created functions use File | Settings | File Templates.
     }
 
     override fun compile(unaryArithmCode: UnaryArithmCode): Instruction<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when (unaryArithmCode.operation) {
+            UnaryArithmOperation.NEG -> return this.compile(BinArithmCode(BinaryArithmOperation.SUB, ConstCode(0), unaryArithmCode))
+            UnaryArithmOperation.SQR -> return this.compile(BinArithmCode(BinaryArithmOperation.MUL, unaryArithmCode, unaryArithmCode))
+        }
     }
 
     override fun compile(varCode: VarCode): Instruction<Int> {

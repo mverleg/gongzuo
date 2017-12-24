@@ -7,6 +7,8 @@ import jit.hardware.Processor
  */
 interface Instruction<RT> {
     fun run(processor: Processor): RT
+
+    fun toText(): CharSequence
 }
 
 

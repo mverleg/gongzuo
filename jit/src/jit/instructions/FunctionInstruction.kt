@@ -17,32 +17,37 @@ abstract class FunctionInstruction(val name: Name, val parameters: List<Name>) {
             WriteInstruction(parameters[indx], args[indx]).run(processor)
         }
     }
+
+    abstract fun toText(): CharSequence
 }
 
-class PrelimFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Name>):
+abstract class CompiledFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Name>):
         FunctionInstruction(name, parameters) {
 
     override fun invoke(processor: Processor, args: List<Int>): Int {
-        /* @implNote See {@code OptFunctionInstruction.invoke} */
 //        if (instruction == null) {
 //            throw RuntimeInvalidCodeError("Found empty body for function '${name}' when running with '${processor}'")
 //        }
         bindArgs(processor, args)
         return instruction.run(processor)
     }
+
+    override fun toText(): CharSequence {
+        val text = StringBuilder("define i32 @").append(name).append("(")
+        text.append(parameters.map { "i32 %" + it.toString() }.joinToString(", "))
+        text.append(") {\nentry:\n\t")
+        text.append(instruction.toText())
+        text.append("}\n")
+        return text
+    }
 }
 
-class OptFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Name>):
-        FunctionInstruction(name, parameters) {
+class PrelimFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Name>):
+        CompiledFunctionInstruction(instruction, name, parameters) {
+}
 
-    override fun invoke(processor: Processor, args: List<Int>): Int {
-        /* @implNote See {@code PrelimFunctionInstruction.invoke} */
-//        if (instruction == null) {
-//            throw RuntimeInvalidCodeError("Found empty body for function '${name}' when running with '${processor}'")
-//        }
-        bindArgs(processor, args)
-        return instruction.run(processor)
-    }
+class OptFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Name>):
+        CompiledFunctionInstruction(instruction, name, parameters) {
 }
 
 

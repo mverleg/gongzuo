@@ -4,7 +4,6 @@ import jit.common.BinaryNumberLogicOperation
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.Instruction
-import jit.common.InstructionList
 
 class BinaryLogicCode(var op: BinaryNumberLogicOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Boolean> {
 
@@ -32,7 +31,7 @@ class BinaryLogicCode(var op: BinaryNumberLogicOperation, val leftCode: Code<Int
 //    }
 //
 //    override fun run(proc: Processor): Boolean {
-//        when (op) {
+//        when (operation) {
 //            BinaryNumberLogicOperation.EQ ->  return leftCode.run(proc) == right.run(proc)
 //            BinaryNumberLogicOperation.NEQ -> return leftCode.run(proc) != right.run(proc)
 //            BinaryNumberLogicOperation.LT ->  return leftCode.run(proc) <  right.run(proc)
