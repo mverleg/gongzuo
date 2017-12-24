@@ -4,6 +4,7 @@ import jit.instructions.DeallocateInstruction
 
 class Scope(val context: HasScope) {
 
+    var generateIndex = 0;
     val variables: MutableSet<Name> = LinkedHashSet<Name>()
 
     fun register(name: Name) {
@@ -17,6 +18,15 @@ class Scope(val context: HasScope) {
         }
         variables.clear()
         return deallocations
+    }
+
+    fun createTempVar() {
+        fun gen() {
+            generateIndex
+        }
+        var genName = "tmp"
+
+
     }
 }
 

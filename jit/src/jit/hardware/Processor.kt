@@ -1,7 +1,7 @@
 package jit.hardware
 
-import jit.common.Processor
 import jit.common.Name
+import jit.common.Processor
 import jit.common.RuntimeInvalidCodeError
 import jit.instructions.FunctionInstruction
 

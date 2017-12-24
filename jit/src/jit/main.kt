@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
                             UnaryArithmCode(UnaryArithmOperation.NEG, b))
             ), Name("call_me"), listOf(Name("arg_one")))
     ))
-    print(source.toText())
+    print(source.toText())  // TODO
     JIT(source).run()
 //    Processor(pack).run()
 }

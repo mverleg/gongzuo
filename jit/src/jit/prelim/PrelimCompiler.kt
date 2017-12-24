@@ -20,8 +20,8 @@ import jit.common.MutableScopeStack
 import jit.common.ScopeStack
 import jit.common.UnaryArithmOperation
 import jit.instructions.AllocateInstruction
+import jit.instructions.ArithmeticInstruction
 import jit.instructions.CallInstruction
-import jit.instructions.FunctionInstruction
 import jit.instructions.PrelimFunctionInstruction
 import jit.instructions.ValueInstruction
 import jit.instructions.WriteInstruction
@@ -30,7 +30,7 @@ class PrelimCompiler: Compiler {
 
     val scopes: MutableScopeStack = MutableScopeStack()
 
-    override fun compile(func: FunDefCode): FunctionInstruction {
+    override fun compile(func: FunDefCode): PrelimFunctionInstruction {
         scopes.push(func)
         val instructions: MutableList<Instruction<Int>> = mutableListOf()
         try {
@@ -47,19 +47,23 @@ class PrelimCompiler: Compiler {
         return PrelimFunctionInstruction(instr, func.name, func.parameters)
     }
 
+    override fun compile(varCode: VarCode): Instruction<Int> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun compile(binArithmCode: BinArithmCode): Instruction<Int> {
-        TODO("not implemented") //To change bod of created functions use File | Settings | File Templates.
+        return ArithmeticInstruction(
+                binArithmCode.operation,
+                binArithmCode.leftCode.toCompiler(this),
+                binArithmCode.rightCode.toCompiler(this)
+        )
     }
 
     override fun compile(unaryArithmCode: UnaryArithmCode): Instruction<Int> {
         when (unaryArithmCode.operation) {
-            UnaryArithmOperation.NEG -> return this.compile(BinArithmCode(BinaryArithmOperation.SUB, ConstCode(0), unaryArithmCode))
-            UnaryArithmOperation.SQR -> return this.compile(BinArithmCode(BinaryArithmOperation.MUL, unaryArithmCode, unaryArithmCode))
+            UnaryArithmOperation.NEG -> return this.compile(BinArithmCode(BinaryArithmOperation.SUB, ConstCode(0), unaryArithmCode.code))
+            UnaryArithmOperation.SQR -> return this.compile(BinArithmCode(BinaryArithmOperation.MUL, unaryArithmCode.code, unaryArithmCode.code))
         }
-    }
-
-    override fun compile(varCode: VarCode): Instruction<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun compile(binaryLogicCode: BinaryLogicCode): Instruction<Boolean> {

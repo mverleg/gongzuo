@@ -26,6 +26,9 @@ class JIT(val pack: PackageCode) {
             }
             blocks.put(func.name, CompileOnDemand(preComp, func))
         }
+        for (instr in blocks.values) {
+            println(instr.toText())  // TODO
+        }
         val main: FunctionInstruction? = blocks.getOrDefault(MAIN_NAME, null)
         check(main != null)
         Processor(blocks).call(MAIN_NAME, listOf())

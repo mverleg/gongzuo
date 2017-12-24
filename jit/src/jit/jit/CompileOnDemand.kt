@@ -29,7 +29,13 @@ class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode):
     }
 
     override fun toText(): CharSequence {
-        return "call @COMPILE('{$name}')"
+        val text = StringBuilder("define i32 @").append(name).append("(")
+                .append(parameters.map { "i32 %" + it.toString() }.joinToString(", "))
+                .append(") {\nentry:\n\t")
+                .append("call @COMPILE('")
+                .append(name)
+                .append("')\n}\n")
+        return text
     }
 }
 

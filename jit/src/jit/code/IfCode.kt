@@ -3,7 +3,6 @@ package jit.code
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.Instruction
-import jit.common.InstructionList
 
 class IfCode(public val condition: Code<Boolean>, public val thenCode: Code<Int>, public val elseCode: Code<Int>): Code<Int> {
 //

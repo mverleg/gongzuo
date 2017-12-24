@@ -1,6 +1,5 @@
 package jit.common
 
-import jit.code.CodeCombi
 import jit.hardware.Processor
 
 /**
