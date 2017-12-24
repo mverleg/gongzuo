@@ -13,9 +13,10 @@ import jit.code.VarCode
 import jit.common.Compiler
 import jit.common.InstructionList
 import jit.instructions.ArithmeticInstruction
+import jit.instructions.FunctionInstruction
 
 class PrelimCompiler: Compiler {
-    fun compile(func: FunDefCode): InstructionList {
+    override fun compile(func: FunDefCode): FunctionInstruction {
         return func.body.toCompiler(this)
     }
 

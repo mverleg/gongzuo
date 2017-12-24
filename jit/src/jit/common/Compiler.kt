@@ -7,10 +7,13 @@ import jit.code.ConstCode
 import jit.code.FunCallCode
 import jit.code.IfCode
 import jit.code.BinaryLogicCode
+import jit.code.FunDefCode
 import jit.code.UnaryArithmCode
 import jit.code.VarCode
+import jit.instructions.FunctionInstruction
 
 interface Compiler {
+    fun compile(func: FunDefCode): FunctionInstruction
     fun compile(binArithmCode: BinArithmCode): InstructionList
     fun compile(unaryArithmCode: UnaryArithmCode): InstructionList
     fun compile(varCode: VarCode): InstructionList

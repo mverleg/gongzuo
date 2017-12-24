@@ -27,9 +27,10 @@ fun main(args: Array<String>) {
             FunDefCode(Name("main"), FunCallCode(Name("call_me"))),
             FunDefCode(Name("call_me"), CodeCombi(
                     AssignmentCode(a, UnaryArithmCode(UnaryArithmOperation.SQR, ConstCode(4))),
-                    last=BinArithmCode(BinaryArithmOperation.ADD, a, ConstCode(8))
+                    last=BinArithmCode(BinaryArithmOperation.SUB, a, ConstCode(7))
             ))
     ))
+    JIT(source).run()
 //    Processor(pack).run()
 }
 

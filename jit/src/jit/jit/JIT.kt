@@ -3,9 +3,10 @@ package jit
 import jit.code.PackageCode
 import jit.code.FunDefCode
 import jit.common.Name
-import jit.comp.FunDefExec
-import jit.comp.ToCompExec
 import jit.hardware.Processor
+import jit.instructions.FunctionInstruction
+import jit.jit.CompileOnDemand
+import jit.prelim.PrelimCompiler
 
 val MAIN_NAME = Name("main")
 
@@ -17,13 +18,13 @@ val MAIN_NAME = Name("main")
 class JIT(val pack: PackageCode) {
 
     fun run() {
-        val blocks: MutableMap<Name, FunDefExec> = HashMap<Name, FunDefExec>();
-        var preComp = PreCompiler()
+        val blocks: MutableMap<Name, FunctionInstruction> = HashMap<Name, FunctionInstruction>();
+        var preComp = PrelimCompiler()
         for (fn: FunDefCode in pack) {
             check(!blocks.containsKey(fn.name), { "Cannot have two functions with the same name" })
-            blocks.put(fn.name, ToCompExec(preComp, fn.body))
+            blocks.put(fn.name, CompileOnDemand(preComp, fn))
         }
-        val main: FunDefExec? = blocks.getOrDefault(MAIN_NAME, null)
+        val main: FunctionInstruction? = blocks.getOrDefault(MAIN_NAME, null)
         check(main != null)
         Processor(blocks).call(MAIN_NAME)
     }
