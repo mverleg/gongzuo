@@ -6,21 +6,25 @@ import jit.instructions.FunctionInstruction
 import jit.prelim.PrelimCompiler
 
 /**
- * Placeholder for piece of code that has never been run yet. Replace by {@code PrelimExec} on first invocation.
+ * Placeholder for piece of code that has never been run yet and as such, not compiled.
+ * This compiles the source and replaces the function by it on first invocation.
  *
  * I'm assuming here that the {@link Processor} can run the {@link Compiler} without my help.
  */
-class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode): FunctionInstruction(null) {
+class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode):
+        FunctionInstruction(funCode.name, funCode.parameters) {
 
-    var assembly: FunctionInstruction? = null
+    var isCompiled = false
 
-    fun call(processor: Processor) {
-        if (assembly == null) {
-            assembly = preComp.compile(funCode)
-        }
-        processor.replace(funCode.name, assembly!!)
-        processor.call(funCode.name)
-//        assembly!!.run(processor)
+    override fun invoke(processor: Processor, vararg args: Int): Int {
+        check(!isCompiled, { "Function ${name} is already compiled; it should not be compiled twice." })
+        isCompiled = true
+        /* Compile the function in preliminary mode. */
+        val assembly = preComp.compile(funCode)
+        /* Replace this placeholder by the compiled version. */
+        processor.replace(funCode.name, assembly)
+        /* Call the original function, passing on the arguments. */
+        return processor.call(funCode.name, *args)
     }
 }
 

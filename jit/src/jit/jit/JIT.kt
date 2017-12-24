@@ -2,6 +2,7 @@ package jit.jit
 
 import jit.code.FunDefCode
 import jit.code.PackageCode
+import jit.common.CompileInvalidCodeError
 import jit.common.Name
 import jit.hardware.Processor
 import jit.instructions.FunctionInstruction
@@ -19,10 +20,11 @@ class JIT(val pack: PackageCode) {
     fun run() {
         val blocks: MutableMap<Name, FunctionInstruction> = HashMap<Name, FunctionInstruction>();
         var preComp = PrelimCompiler()
-        for (fn: FunDefCode in pack) {
-            check(!blocks.containsKey(fn.name), { "Cannot have two functions with the same name" })
-            print(fn.name)
-            blocks.put(fn.name, CompileOnDemand(preComp, fn))
+        for (func: FunDefCode in pack) {
+            if (blocks.containsKey(func.name)) {
+                throw CompileInvalidCodeError("Cannot have two functions with name '{fn.name}'")
+            }
+            blocks.put(func.name, CompileOnDemand(preComp, func))
         }
         val main: FunctionInstruction? = blocks.getOrDefault(MAIN_NAME, null)
         check(main != null)

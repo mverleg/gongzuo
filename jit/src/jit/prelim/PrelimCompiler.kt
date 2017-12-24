@@ -14,12 +14,11 @@ import jit.common.Compiler
 import jit.common.InstructionList
 import jit.instructions.ArithmeticInstruction
 import jit.instructions.FunctionInstruction
+import jit.instructions.PrelimFunctionInstruction
 
 class PrelimCompiler: Compiler {
     override fun compile(func: FunDefCode): FunctionInstruction {
-        return FunctionInstruction(
-                func.body.toCompiler(this)
-        )
+        return PrelimFunctionInstruction(func.body.toCompiler(this), func.name, func.parameters)
     }
 
     override fun compile(binArithmCode: BinArithmCode): InstructionList {

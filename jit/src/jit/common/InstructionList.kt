@@ -7,13 +7,14 @@ import jit.hardware.Processor
  *
  * The result is determined by the last instruction.
  */
-class InstructionList(val first: Instruction, vararg val instructions: Instruction): Instruction {
+class InstructionList(val first: Instruction<Int>, vararg val instructions: Instruction<Int>): Instruction<Int> {
 
-    override fun run(processor: Processor) {
-        first.run(processor)
+    override fun run(processor: Processor): Int {
+        var result = first.run(processor)
         for (instr in instructions) {
-            instr.run(processor)
+            result = instr.run(processor)
         }
+        return result
     }
 }
 
