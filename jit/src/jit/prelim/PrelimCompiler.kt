@@ -11,8 +11,10 @@ import jit.code.IfCode
 import jit.code.UnaryArithmCode
 import jit.code.VarCode
 import jit.common.Compiler
+import jit.common.Instruction
 import jit.common.InstructionList
 import jit.instructions.ArithmeticInstruction
+import jit.instructions.CallInstruction
 import jit.instructions.FunctionInstruction
 import jit.instructions.PrelimFunctionInstruction
 
@@ -55,8 +57,8 @@ class PrelimCompiler: Compiler {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun compile(funCallCode: FunCallCode): InstructionList {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun compile(funCallCode: FunCallCode): Instruction<Int> {
+        return CallInstruction(funCallCode.name, funCallCode.args.map { it.toCompiler(this) })
     }
 }
 

@@ -30,7 +30,7 @@ fun main(args: Array<String>) {
     val a2 = VarCode(Name("a2"))
     val b = VarCode(Name("b"))
     val source = PackageCode(listOf(
-            FunDefCode(FunCallCode(Name("call_me"), ConstCode(3)), Name("main")),
+            FunDefCode(FunCallCode(Name("call_me"), listOf(ConstCode(3))), Name("main")),
             FunDefCode(CodeCombi(
                     DeclarationCode(a2, DeclarationCode(a, UnaryArithmCode(UnaryArithmOperation.SQR, ConstCode(4)))),
                     DeclarationCode(b, BinArithmCode(BinaryArithmOperation.SUB, a, ConstCode(7))),

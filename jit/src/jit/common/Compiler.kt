@@ -22,6 +22,6 @@ interface Compiler {
     fun compile(constCode: ConstCode): InstructionList
     fun <RT> compile(codeCombi: CodeCombi<RT>): InstructionList
     fun compile(assignmentCode: AssignmentCode): InstructionList
-    fun compile(funCallCode: FunCallCode): InstructionList
+    fun compile(funCallCode: FunCallCode): Instruction<Int>
 }
 

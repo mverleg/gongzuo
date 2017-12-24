@@ -1,6 +1,6 @@
 package jit.instructions
 
-import jit.common.InstructionList
+import jit.common.Instruction
 import jit.common.Name
 import jit.common.RuntimeInvalidCodeError
 import jit.hardware.Processor
@@ -19,29 +19,29 @@ abstract class FunctionInstruction(val name: Name, val parameters: List<Name>) {
     }
 }
 
-class PrelimFunctionInstruction(val instructions: InstructionList?, name: Name, parameters: List<Name>):
+class PrelimFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Name>):
         FunctionInstruction(name, parameters) {
 
     override fun invoke(processor: Processor, vararg args: Int): Int {
         /* @implNote See {@code OptFunctionInstruction.invoke} */
-        if (instructions == null) {
-            throw RuntimeInvalidCodeError("Found empty body for function '${name}' when running with '${processor}'")
-        }
+//        if (instruction == null) {
+//            throw RuntimeInvalidCodeError("Found empty body for function '${name}' when running with '${processor}'")
+//        }
         bindArgs(processor, *args)
-        return instructions.run(processor)
+        return instruction.run(processor)
     }
 }
 
-class OptFunctionInstruction(val instructions: InstructionList?, name: Name, parameters: List<Name>):
+class OptFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Name>):
         FunctionInstruction(name, parameters) {
 
     override fun invoke(processor: Processor, vararg args: Int): Int {
         /* @implNote See {@code PrelimFunctionInstruction.invoke} */
-        if (instructions == null) {
-            throw RuntimeInvalidCodeError("Found empty body for function '${name}' when running with '${processor}'")
-        }
+//        if (instruction == null) {
+//            throw RuntimeInvalidCodeError("Found empty body for function '${name}' when running with '${processor}'")
+//        }
         bindArgs(processor, *args)
-        return instructions.run(processor)
+        return instruction.run(processor)
     }
 }
 
