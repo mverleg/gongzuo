@@ -17,15 +17,15 @@ class CodeCombi(vararg statements: Statement<Int>, last: Code<Int>): Code<Int>, 
      */
     init {
         val flattenedCodes: MutableList<Code<Int>> = mutableListOf()
-//        for (code in statements) {
+        for (code in statements) {
 //            if (code is CodeCombi) {
 //                for (subcode in code) {
 //                    flattenedCodes.add(subcode)
 //                }
 //            } else {
-//                flattenedCodes.add(code)
+                flattenedCodes.add(code)
 //            }
-//        }
+        }
         if (last is CodeCombi) {
             for (subcode in last) {
                 flattenedCodes.add(subcode)
