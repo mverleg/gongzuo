@@ -26,6 +26,17 @@ class IfCode(public val condition: Code<Boolean>, public val thenCode: Code<Int>
     override fun toCompiler(compiler: Compiler): InstructionList {
         return compiler.compile(this)
     }
+
+    override fun toText(): CharSequence {
+        val text = StringBuilder("if ")
+                .append(condition.toText())
+                .append(" then ")
+                .append(thenCode.toText())
+                .append(" else ")
+                .append(elseCode.toText())
+                .append(" endif ")
+        return text
+    }
 }
 
 

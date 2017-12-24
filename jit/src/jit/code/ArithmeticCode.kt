@@ -12,6 +12,16 @@ class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val 
         return compiler.compile(this)
     }
 
+    override fun toText(): String {
+        when (op) {
+            BinaryArithmOperation.ADD -> return "(" + leftCode.toText() + " + " + rightCode.toText() + ")"
+            BinaryArithmOperation.SUB -> return "(" + leftCode.toText() + " - " + rightCode.toText() + ")"
+            BinaryArithmOperation.MUL -> return "(" + leftCode.toText() + " * " + rightCode.toText() + ")"
+            BinaryArithmOperation.DIV -> return "(" + leftCode.toText() + " / " + rightCode.toText() + ")"
+            BinaryArithmOperation.MOD -> return "(" + leftCode.toText() + " % " + rightCode.toText() + ")"
+        }
+    }
+
 //    var leftPrelimExec: PrelimExec<Int>? = null
 //    var rightPrelimExec: PrelimExec<Int>? = null
 //    var leftExec: Exec<Int>? = null
@@ -51,5 +61,12 @@ class BinArithmCode(var op: BinaryArithmOperation, val leftCode: Code<Int>, val 
 class UnaryArithmCode(var op: UnaryArithmOperation, val code: Code<Int>): Code<Int> {
     override fun toCompiler(compiler: Compiler): InstructionList {
         return compiler.compile(this)
+    }
+
+    override fun toText(): String {
+        when (op) {
+            UnaryArithmOperation.NEG -> return "-("  + code.toText() + ")"
+            UnaryArithmOperation.SQR -> return  "("  + code.toText() + ")^2"
+        }
     }
 }

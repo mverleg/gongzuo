@@ -11,6 +11,10 @@ class VarCode(val name: Name): Code<Int> {
         return compiler.compile(this)
     }
 
+    override fun toText(): CharSequence {
+        return name.toString()
+    }
+
 //    override fun precomp(): PrelimExec<Int> {
 //        return VarExec(this);
 //    }

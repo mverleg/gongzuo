@@ -8,6 +8,10 @@ class ConstCode(val value: Int): Code<Int> {
     override fun toCompiler(compiler: Compiler): InstructionList {
         return compiler.compile(this)
     }
+
+    override fun toText(): CharSequence {
+        return value.toString()
+    }
 }
 
 

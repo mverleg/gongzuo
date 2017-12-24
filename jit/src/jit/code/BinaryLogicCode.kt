@@ -1,14 +1,25 @@
 package jit.code
 
+import jit.common.BinaryNumberLogicOperation
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.InstructionList
-import jit.common.BinaryNumberLogicOperation
 
-class BinaryLogicCode(var op: BinaryNumberLogicOperation, val left: Code<Int>, val right: Code<Int>): Code<Boolean> {
+class BinaryLogicCode(var op: BinaryNumberLogicOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Boolean> {
 
     override fun toCompiler(compiler: Compiler): InstructionList {
         return compiler.compile(this)
+    }
+
+    override fun toText(): String {
+        when (op) {
+            BinaryNumberLogicOperation.EQ  -> return "(" + leftCode.toText() + " == " + rightCode.toText() + ")"
+            BinaryNumberLogicOperation.NEQ -> return "(" + leftCode.toText() + " != " + rightCode.toText() + ")"
+            BinaryNumberLogicOperation.LT  -> return "(" + leftCode.toText() + " < "  + rightCode.toText() + ")"
+            BinaryNumberLogicOperation.GT  -> return "(" + leftCode.toText() + " > "  + rightCode.toText() + ")"
+            BinaryNumberLogicOperation.LTE -> return "(" + leftCode.toText() + " <= " + rightCode.toText() + ")"
+            BinaryNumberLogicOperation.GTE -> return "(" + leftCode.toText() + " >= " + rightCode.toText() + ")"
+        }
     }
 //
 //    override fun precomp(): PrelimExec<Boolean> {
@@ -21,12 +32,12 @@ class BinaryLogicCode(var op: BinaryNumberLogicOperation, val left: Code<Int>, v
 //
 //    override fun run(proc: Processor): Boolean {
 //        when (op) {
-//            BinaryNumberLogicOperation.EQ ->  return left.run(proc) == right.run(proc)
-//            BinaryNumberLogicOperation.NEQ -> return left.run(proc) != right.run(proc)
-//            BinaryNumberLogicOperation.LT ->  return left.run(proc) <  right.run(proc)
-//            BinaryNumberLogicOperation.GT ->  return left.run(proc) >  right.run(proc)
-//            BinaryNumberLogicOperation.LTE -> return left.run(proc) <= right.run(proc)
-//            BinaryNumberLogicOperation.GTE -> return left.run(proc) >= right.run(proc)
+//            BinaryNumberLogicOperation.EQ ->  return leftCode.run(proc) == right.run(proc)
+//            BinaryNumberLogicOperation.NEQ -> return leftCode.run(proc) != right.run(proc)
+//            BinaryNumberLogicOperation.LT ->  return leftCode.run(proc) <  right.run(proc)
+//            BinaryNumberLogicOperation.GT ->  return leftCode.run(proc) >  right.run(proc)
+//            BinaryNumberLogicOperation.LTE -> return leftCode.run(proc) <= right.run(proc)
+//            BinaryNumberLogicOperation.GTE -> return leftCode.run(proc) >= right.run(proc)
 //        }
 //    }
 }
