@@ -35,7 +35,7 @@ fun main(args: Array<String>) {
     ))
     print(source.toText())  // TODO
     JIT(source).run()
-//    Processor(pack).run()
+//    HighProcessor(pack).run()
 }
 
 

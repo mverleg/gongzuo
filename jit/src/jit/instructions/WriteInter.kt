@@ -1,10 +1,9 @@
 package jit.instructions
 
-import jit.common.Instruction
-import jit.hardware.Processor
+import jit.common.Inter
 
-class WriteInstruction(val variable: Variable, val value: Instruction<Int>): Instruction<Int> {
-    override fun run(processor: Processor): Int {
+class WriteInter(val variable: Variable, val value: Inter<Int>): Inter<Int> {
+    override fun run(processor: HighProcessor): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

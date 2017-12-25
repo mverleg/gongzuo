@@ -15,7 +15,7 @@ The executable code exists in three stages:
 2. Debug code, which includes benchmarking code and which does not include slow optimizations. After being called often, it is optimized (see next point).
 3. Optimized mode, which is compiled more slowly with many optimizations, based on the runtime benchmarking of the debug code.
 
-The processor can only run a limited set of instructions.
+The processor can only run a limited set of inters.
 
 Language
 -------------------------------
@@ -32,6 +32,22 @@ Features include:
 * Constants.
 
 Loops may be added in the future.
+
+Compilation
+-------------------------------
+
+There are two compilation targets:
+
+* **Low** level is single-assignment mode and made of basic blocks, with only jumps as control flow structures. It somewhat resembles LLVM.
+* **High** level allows restricted constructs such as if and while but no jumps, and exists in tree form. It somewhat resembles Javascript (or any other high-level imperative language).
+
+Each has it's own processor.
+
+The representations are:
+
+1. **Source**, which is represented as an abstract syntax tree (lexing and parsing are out of scope).
+2. **Intermediary**, which is type-checked and cross-referenced, removes redundant constructs and where optimizations are done (if any are ever implemented).
+3. **Target**, which is either the low or high level representation.
 
 Notes
 -------------------------------

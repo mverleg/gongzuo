@@ -2,7 +2,7 @@ package jit.code
 
 import jit.common.Code
 import jit.common.Compiler
-import jit.common.Instruction
+import jit.common.Inter
 import jit.common.Statement
 
 /**
@@ -36,7 +36,7 @@ class CodeCombi(vararg statements: Statement<Int>, last: Code<Int>): Code<Int>, 
         codes = flattenedCodes
     }
 
-    override fun toCompiler(compiler: Compiler): Instruction<Int> {
+    override fun toCompiler(compiler: Compiler): Inter<Int> {
         return compiler.compile(this)
     }
 

@@ -1,10 +1,9 @@
 package jit.instructions
 
-import jit.common.Instruction
-import jit.hardware.Processor
+import jit.common.Inter
 
-class DeallocateInstruction(val variable: Variable): Instruction<Int> {
-    override fun run(processor: Processor): Int {
+class DeallocateInter(val variable: Variable): Inter<Int> {
+    override fun run(processor: HighProcessor): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

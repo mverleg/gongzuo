@@ -3,11 +3,11 @@ package jit.code
 import jit.common.BinaryNumberLogicOperation
 import jit.common.Code
 import jit.common.Compiler
-import jit.common.Instruction
+import jit.common.Inter
 
 class BinaryLogicCode(var op: BinaryNumberLogicOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Boolean> {
 
-    override fun toCompiler(compiler: Compiler): Instruction<Boolean> {
+    override fun toCompiler(compiler: Compiler): Inter<Boolean> {
         return compiler.compile(this)
     }
 
@@ -30,7 +30,7 @@ class BinaryLogicCode(var op: BinaryNumberLogicOperation, val leftCode: Code<Int
 //        return this;
 //    }
 //
-//    override fun run(proc: Processor): Boolean {
+//    override fun run(proc: HighProcessor): Boolean {
 //        when (operation) {
 //            BinaryNumberLogicOperation.EQ ->  return leftCode.run(proc) == right.run(proc)
 //            BinaryNumberLogicOperation.NEQ -> return leftCode.run(proc) != right.run(proc)

@@ -1,11 +1,10 @@
 package jit.instructions
 
-import jit.common.Instruction
+import jit.common.Inter
 import jit.common.Name
-import jit.hardware.Processor
 
-class CallInstruction(val name: Name, val args: List<Instruction<Int>>): Instruction<Int> {
-    override fun run(processor: Processor): Int {
+class CallInter(val name: Name, val args: List<Inter<Int>>): Inter<Int> {
+    override fun run(processor: HighProcessor): Int {
         return processor.call(name, args.map { it.run(processor) })
     }
 

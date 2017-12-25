@@ -12,22 +12,22 @@ import jit.code.IfCode
 import jit.code.ReadCode
 import jit.code.ScopedBlock
 import jit.code.UnaryArithmCode
-import jit.instructions.FunctionInstruction
-import jit.instructions.InstructionList
+import jit.instructions.FunctionInter
+import jit.instructions.InterList
 
 interface Compiler {
-    fun compile(func: FunDefCode): FunctionInstruction
-    fun compile(binArithmCode: BinArithmCode): Instruction<Int>
-    fun compile(unaryArithmCode: UnaryArithmCode): Instruction<Int>
-    fun compile(binaryLogicCode: BinaryLogicCode): Instruction<Boolean>
-    fun compile(ifCode: IfCode): Instruction<Int>
-    fun compile(constCode: ConstCode): Instruction<Int>
-    fun compile(codeCombi: CodeCombi): InstructionList
-    fun compile(readCode: ReadCode): Instruction<Int>
-    fun compile(assignmentCode: AssignmentCode): Instruction<Int>
-    fun compile(declarationCode: DeclarationCode): Instruction<Int>
-    fun compile(scopedBlock: ScopedBlock): Instruction<Int>
-    fun compile(funCallCode: FunCallCode): Instruction<Int>
+    fun compile(func: FunDefCode): FunctionInter
+    fun compile(binArithmCode: BinArithmCode): Inter<Int>
+    fun compile(unaryArithmCode: UnaryArithmCode): Inter<Int>
+    fun compile(binaryLogicCode: BinaryLogicCode): Inter<Boolean>
+    fun compile(ifCode: IfCode): Inter<Int>
+    fun compile(constCode: ConstCode): Inter<Int>
+    fun compile(codeCombi: CodeCombi): InterList
+    fun compile(readCode: ReadCode): Inter<Int>
+    fun compile(assignmentCode: AssignmentCode): Inter<Int>
+    fun compile(declarationCode: DeclarationCode): Inter<Int>
+    fun compile(scopedBlock: ScopedBlock): Inter<Int>
+    fun compile(funCallCode: FunCallCode): Inter<Int>
 
     fun scopes(): ScopeStack
 }

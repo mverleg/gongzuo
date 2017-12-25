@@ -2,10 +2,12 @@
 TODO
 ===============================
 
-* I think it'd be educative to make the target instructions more LLVM, possibly even in static single assignment form.
+* I think it'd be educative to make the target inters more LLVM, possibly even in static single assignment form.
 * The scopes thing is a bit ugly with repeated code; is there a way to have anything HasScope automatically manage that during compilation?
 * Is it possible to support if-statement without else, if I want everything to be an expression? (or loop with 0 repetitions?)
 * Make sure variable, function, block etc names don't collide (currently only checked for variables, and blocks are generated)
+* Validate function signatures at compile-time (or link time, as far as that is a separate stage).
+* Implement the low level target and processor.
 
 //
 

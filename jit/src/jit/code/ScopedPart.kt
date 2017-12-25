@@ -3,7 +3,7 @@ package jit.code
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.HasScope
-import jit.common.Instruction
+import jit.common.Inter
 import jit.common.Statement
 
 /**
@@ -14,7 +14,7 @@ class ScopedBlock(vararg statements: Statement<Int>, last: Code<Int>):
 
     val combi: CodeCombi = CodeCombi(*statements, last=last)
 
-    override fun toCompiler(compiler: Compiler): Instruction<Int> {
+    override fun toCompiler(compiler: Compiler): Inter<Int> {
         return compiler.compile(this)
     }
 

@@ -1,11 +1,10 @@
 package jit.instructions
 
-import jit.common.Instruction
+import jit.common.Inter
 import jit.common.genSequenceStr
-import jit.hardware.Processor
 
-class ConditionalJumpInstruction(val condition: Instruction<Boolean>, val thenInstructions: Instruction<Int>,
-        val elseInstructions: Instruction<Int>): Instruction<Int> {
+class ConditionalJumpInter(val condition: Inter<Boolean>, val thenInstructions: Inter<Int>,
+                           val elseInstructions: Inter<Int>): Inter<Int> {
 
     val postfix: String
 
@@ -18,7 +17,7 @@ class ConditionalJumpInstruction(val condition: Instruction<Boolean>, val thenIn
         generateIndex++
     }
 
-    override fun run(processor: Processor): Int {
+    override fun run(processor: HighProcessor): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

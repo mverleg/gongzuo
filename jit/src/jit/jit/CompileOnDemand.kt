@@ -2,23 +2,22 @@ package jit.jit
 
 import jit.code.FunDefCode
 import jit.common.Type
-import jit.hardware.Processor
-import jit.instructions.FunctionInstruction
+import jit.instructions.FunctionInter
 import jit.instructions.Variable
-import jit.prelim.PrelimCompiler
+import jit.high.prelim.PrelimCompiler
 
 /**
  * Placeholder for piece of code that has never been run yet and as such, not compiled.
  * This compiles the source and replaces the function by it on first invocation.
  *
- * I'm assuming here that the {@link Processor} can run the {@link Compiler} without my help.
+ * I'm assuming here that the {@link HighProcessor} can run the {@link Compiler} without my help.
  */
 class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode):
-        FunctionInstruction(funCode.name, funCode.parameters.map{ Variable(it, Type()) }) {
+        FunctionInter(funCode.name, funCode.parameters.map{ Variable(it, Type()) }) {
 
     var isCompiled = false
 
-    override fun invoke(processor: Processor, args: List<Int>): Int {
+    override fun invoke(processor: HighProcessor, args: List<Int>): Int {
         check(!isCompiled, { "Function ${name} is already compiled; it should not be compiled twice." })
         isCompiled = true
         /* Compile the function in preliminary mode. */

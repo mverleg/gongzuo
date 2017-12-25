@@ -4,9 +4,8 @@ import jit.code.FunDefCode
 import jit.code.PackageCode
 import jit.common.CompileInvalidCodeError
 import jit.common.Name
-import jit.hardware.Processor
-import jit.instructions.FunctionInstruction
-import jit.prelim.PrelimCompiler
+import jit.instructions.FunctionInter
+import jit.high.prelim.PrelimCompiler
 
 val MAIN_NAME = Name("main")
 
@@ -18,7 +17,7 @@ val MAIN_NAME = Name("main")
 class JIT(val pack: PackageCode) {
 
     fun run() {
-        val blocks: MutableMap<Name, FunctionInstruction> = HashMap<Name, FunctionInstruction>();
+        val blocks: MutableMap<Name, FunctionInter> = HashMap<Name, FunctionInter>();
         var preComp = PrelimCompiler()
         for (func: FunDefCode in pack) {
             if (blocks.containsKey(func.name)) {
@@ -29,9 +28,9 @@ class JIT(val pack: PackageCode) {
         for (instr in blocks.values) {
             println(instr.toText())  // TODO
         }
-        val main: FunctionInstruction? = blocks.getOrDefault(MAIN_NAME, null)
+        val main: FunctionInter? = blocks.getOrDefault(MAIN_NAME, null)
         check(main != null)
-        Processor(blocks).call(MAIN_NAME, listOf())
+        HighProcessor(blocks).call(MAIN_NAME, listOf())
     }
 }
 

@@ -3,12 +3,12 @@ package jit.code
 import jit.common.BinaryArithmOperation
 import jit.common.Code
 import jit.common.Compiler
-import jit.common.Instruction
+import jit.common.Inter
 import jit.common.UnaryArithmOperation
 
 class BinArithmCode(var operation: BinaryArithmOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
 
-    override fun toCompiler(compiler: Compiler): Instruction<Int> {
+    override fun toCompiler(compiler: Compiler): Inter<Int> {
         return compiler.compile(this)
     }
 
@@ -44,7 +44,7 @@ class BinArithmCode(var operation: BinaryArithmOperation, val leftCode: Code<Int
 //        return this;
 //    }
 //
-//    override fun run(proc: Processor): Int {
+//    override fun run(proc: HighProcessor): Int {
 //        if (leftPrelimExec == null || rightPrelimExec == null) {
 //            throw IllegalStateException("Compile before running")
 //        }
@@ -59,7 +59,7 @@ class BinArithmCode(var operation: BinaryArithmOperation, val leftCode: Code<Int
 }
 
 class UnaryArithmCode(var operation: UnaryArithmOperation, val code: Code<Int>): Code<Int> {
-    override fun toCompiler(compiler: Compiler): Instruction<Int> {
+    override fun toCompiler(compiler: Compiler): Inter<Int> {
         return compiler.compile(this)
     }
 

@@ -1,6 +1,6 @@
 package jit.common
 
-import jit.instructions.DeallocateInstruction
+import jit.instructions.DeallocateInter
 import jit.instructions.Variable
 
 /**
@@ -16,10 +16,10 @@ class Scope(val context: HasScope) {
         variables.put(variable.name, variable)
     }
 
-    fun generateDeallocations(): List<DeallocateInstruction> {
-        val deallocations: MutableList<DeallocateInstruction> = mutableListOf()
+    fun generateDeallocations(): List<DeallocateInter> {
+        val deallocations: MutableList<DeallocateInter> = mutableListOf()
         for (variable in variables.values) {
-            deallocations.add(DeallocateInstruction(variable))
+            deallocations.add(DeallocateInter(variable))
         }
         variables.clear()
         return deallocations

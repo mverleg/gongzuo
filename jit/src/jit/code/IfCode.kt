@@ -2,7 +2,7 @@ package jit.code
 
 import jit.common.Code
 import jit.common.Compiler
-import jit.common.Instruction
+import jit.common.Inter
 
 class IfCode(public val condition: Code<Boolean>, public val thenCode: Code<Int>, public val elseCode: Code<Int>): Code<Int> {
 //
@@ -23,7 +23,7 @@ class IfCode(public val condition: Code<Boolean>, public val thenCode: Code<Int>
 //        return OptIf(condition.optcomp(conditionExec), thenCode.optcomp(thenExec), elseCode.optcomp(elseExec), prelimIf.getTrueRatio())
 //    }
 
-    override fun toCompiler(compiler: Compiler): Instruction<Int> {
+    override fun toCompiler(compiler: Compiler): Inter<Int> {
         return compiler.compile(this)
     }
 
