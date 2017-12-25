@@ -6,7 +6,7 @@ import jit.common.RuntimeInvalidCodeError
 import jit.instructions.FunctionInstruction
 
 /**
- * The processor executes the AST instruction. It may not do any special processing,
+ * The processor executes the AST instructions. It may not do any special processing,
  * since the physical processor also cannot do that; the {@link JIT} must do this.
  */
 class Processor(override val funDeclarations: MutableMap<Name, FunctionInstruction>): Processor {

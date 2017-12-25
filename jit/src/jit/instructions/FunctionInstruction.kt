@@ -1,6 +1,5 @@
 package jit.instructions
 
-import jit.common.Instruction
 import jit.common.Name
 import jit.common.RuntimeInvalidCodeError
 import jit.hardware.Processor
@@ -21,33 +20,33 @@ abstract class FunctionInstruction(val name: Name, val parameters: List<Variable
     abstract fun toText(): CharSequence
 }
 
-abstract class CompiledFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Variable>):
+abstract class CompiledFunctionInstruction(val instructions: BlockSet, name: Name, parameters: List<Variable>):
         FunctionInstruction(name, parameters) {
 
     override fun invoke(processor: Processor, args: List<Int>): Int {
-//        if (instruction == null) {
+//        if (instructions == null) {
 //            throw RuntimeInvalidCodeError("Found empty body for function '${name}' when running with '${processor}'")
 //        }
         bindArgs(processor, args)
-        return instruction.run(processor)
+        return instructions.run(processor)
     }
 
     override fun toText(): CharSequence {
         val text = StringBuilder("define i32 @").append(name).append("(")
         text.append(parameters.map { "i32 %" + it.toString() }.joinToString(", "))
         text.append(") {\nentry:\n\t")
-        text.append(instruction.toText())
+        text.append(instructions.toText())
         text.append("}\n")
         return text
     }
 }
 
-class PrelimFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Variable>):
+class PrelimFunctionInstruction(instruction: BlockSet, name: Name, parameters: List<Variable>):
         CompiledFunctionInstruction(instruction, name, parameters) {
 }
 
-class OptFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Variable>):
-        CompiledFunctionInstruction(instruction, name, parameters) {
+class OptFunctionInstruction(instructions: BlockSet, name: Name, parameters: List<Variable>):
+        CompiledFunctionInstruction(instructions, name, parameters) {
 }
 
 

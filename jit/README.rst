@@ -33,4 +33,12 @@ Features include:
 
 Loops may be added in the future.
 
+Notes
+-------------------------------
+
+LLVM IR is quite low-level.
+
+* Possibly when compiling to LLVM, there should be another intermediary language (without if statements and loops), which is not necessary for Javascript.
+* Some optimizations are easier or only possible at LLVM IR level and should be done by LLVM itself, but some safety guarantees are lost by converting to more expressive statements, potentially disabling other optimizations.
+
 

@@ -17,7 +17,7 @@ import jit.common.BinaryArithmOperation
 import jit.common.CompileInvalidCodeError
 import jit.common.Compiler
 import jit.common.Instruction
-import jit.common.InstructionList
+import jit.instructions.InstructionList
 import jit.common.MutableScopeStack
 import jit.common.ScopeStack
 import jit.common.UnaryArithmOperation
@@ -26,6 +26,8 @@ import jit.instructions.ArithmeticInstruction
 import jit.instructions.CallInstruction
 import jit.instructions.PrelimFunctionInstruction
 import jit.common.Type
+import jit.instructions.BlockSet
+import jit.instructions.ReadInstruction
 import jit.instructions.ValueInstruction
 import jit.instructions.Variable
 import jit.instructions.WriteInstruction
@@ -44,12 +46,13 @@ class PrelimCompiler: Compiler {
                 instructions.add(deallocation)
             }
         } finally {
+            println(scopes.toText()) // TODO
             scopes.pop()
         }
         // Function parameters should also be deallocated, no?
-        val instr = InstructionList(instructions[0], *instructions.subList(1, instructions.size).toTypedArray())
+        val blocks = BlockSet(instructions[0], *instructions.subList(1, instructions.size).toTypedArray())
         val params = func.parameters.map{ Variable(it, Type()) }
-        return PrelimFunctionInstruction(instr, func.name, params)
+        return PrelimFunctionInstruction(blocks, func.name, params)
     }
 
     override fun compile(binArithmCode: BinArithmCode): Instruction<Int> {
@@ -78,7 +81,21 @@ class PrelimCompiler: Compiler {
     }
 
     override fun compile(ifCode: IfCode): Instruction<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        val condVar = scopes.nearest().createTempVar(Type(/* Bool */))
+        val ifResVar = scopes.nearest().createTempVar(Type(/* RT\Int */))
+
+        // TODO: register these blocks somehow
+        // TODO: make sure next steps add to endBlock
+        val thenBlock = TODO()
+        val elseBlock = TODO()
+        val endBlock = TODO()
+
+//        return ConditionalJumpInstruction(
+//                null,
+//                null,
+//                null
+//        )
     }
 
     override fun compile(constCode: ConstCode): Instruction<Int> {
@@ -117,6 +134,7 @@ class PrelimCompiler: Compiler {
             throw CompileInvalidCodeError("name '${existingVar.name}' has already been declared")
         }
         val newVar = Variable(declarationCode.assignment.variable, Type())
+        scopes().nearest().register(newVar)
         return InstructionList(
                 AllocateInstruction(newVar),
                 declarationCode.assignment.toCompiler(this)
@@ -124,7 +142,6 @@ class PrelimCompiler: Compiler {
     }
 
     override fun compile(assignmentCode: AssignmentCode): Instruction<Int> {
-        println(scopes().toText())  // TODO
         val existingVar = scopes().getVar(assignmentCode.variable.name)
         if (existingVar == null) {
             throw CompileInvalidCodeError("trying to assign to name '${assignmentCode.variable.name}' but it has not been declared")
@@ -133,7 +150,7 @@ class PrelimCompiler: Compiler {
     }
 
     override fun compile(readCode: ReadCode): Instruction<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return ReadInstruction(Variable(readCode.variable, Type()))
     }
 
     override fun compile(funCallCode: FunCallCode): Instruction<Int> {

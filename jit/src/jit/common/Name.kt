@@ -1,14 +1,14 @@
 package jit.common
 
 class Name(value: String) {
-    val value: String
+    val value: String /* Interned */
 
     init {
         if (value in setOf("function", "return", "if", "then", "else", "endif")) {
             throw IllegalArgumentException("Reserved name: {}" + value)
         }
         if (Regex("^[a-zA-Z_][a-zA-Z0-9_]*$").containsMatchIn(value)) {
-            this.value = value
+            this.value = value.intern()
         } else {
             throw IllegalArgumentException("Not a valid name: ${value}")
         }
@@ -26,6 +26,8 @@ class Name(value: String) {
         if (other !is Name) {
             return false
         }
-        return value.equals(other.value)
+        /* Note that name strings are interned, so this works. */
+        return value === other.value
     }
 }
+

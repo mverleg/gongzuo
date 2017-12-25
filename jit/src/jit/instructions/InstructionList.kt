@@ -1,11 +1,12 @@
-package jit.common
+package jit.instructions
 
+import jit.common.Instruction
 import jit.hardware.Processor
 
 /**
- * A list of at least one instruction, which is itself an instruction.
+ * A list of at least one instructions, which is itself an instructions.
  *
- * The result is determined by the last instruction.
+ * The result is determined by the last instructions.
  */
 class InstructionList(val first: Instruction<Int>, vararg val otherInstructions: Instruction<Int>):
         Instruction<Int>, Iterable<Instruction<Int>> {

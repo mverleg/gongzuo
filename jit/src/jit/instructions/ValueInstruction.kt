@@ -3,8 +3,9 @@ package jit.instructions
 import jit.common.Instruction
 import jit.hardware.Processor
 
-class ValueInstruction(val value: Int): Instruction<Int> {
-    override fun run(processor: Processor): Int {
+class ValueInstruction<RT>(val value: RT): Instruction<RT> {
+
+    override fun run(processor: Processor): RT {
         return value
     }
 

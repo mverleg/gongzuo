@@ -13,6 +13,7 @@ import jit.code.ReadCode
 import jit.code.ScopedBlock
 import jit.code.UnaryArithmCode
 import jit.instructions.FunctionInstruction
+import jit.instructions.InstructionList
 
 interface Compiler {
     fun compile(func: FunDefCode): FunctionInstruction

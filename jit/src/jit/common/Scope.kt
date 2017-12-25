@@ -9,10 +9,11 @@ import jit.instructions.Variable
 class Scope(val context: HasScope) {
 
     var generateIndex = 0
-    val variables: LinkedHashMap<String, Variable> = LinkedHashMap<String, Variable>()
+    val usedNames: LinkedHashSet<String> = LinkedHashSet()
+    val variables: LinkedHashMap<Name, Variable> = LinkedHashMap<Name, Variable>()
 
     fun register(variable: Variable) {
-        variables.put(variable.name.value, variable)
+        variables.put(variable.name, variable)
     }
 
     fun generateDeallocations(): List<DeallocateInstruction> {
@@ -25,11 +26,12 @@ class Scope(val context: HasScope) {
     }
 
     // TODO: this can be called before normal variables are all declared, leading to future duplicates
+    // TODO: maybe the solution is to generate temporary names at translation time, and keep just objects when compiling
     fun createTempVar(type: Type): Variable {
         while (true) {
             val name = genName(generateIndex)
             generateIndex++
-            if (!variables.containsKey(name)) {
+            if (!usedNames.contains(name)) {
                 val variable = Variable(Name(name), type)
                 this.register(variable)
                 return variable
@@ -38,8 +40,8 @@ class Scope(val context: HasScope) {
     }
 
     fun getVar(name: Name): Variable? {
-        if (variables.containsKey(name.value)) {
-            return variables.get(name.value)
+        if (variables.containsKey(name)) {
+            return variables.get(name)
         }
         return null
     }
