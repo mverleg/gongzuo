@@ -5,7 +5,7 @@ import jit.common.Name
 import jit.common.RuntimeInvalidCodeError
 import jit.hardware.Processor
 
-abstract class FunctionInstruction(val name: Name, val parameters: List<Name>) {
+abstract class FunctionInstruction(val name: Name, val parameters: List<Variable>) {
 
     abstract fun invoke(processor: Processor, args: List<Int>): Int
 
@@ -21,7 +21,7 @@ abstract class FunctionInstruction(val name: Name, val parameters: List<Name>) {
     abstract fun toText(): CharSequence
 }
 
-abstract class CompiledFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Name>):
+abstract class CompiledFunctionInstruction(val instruction: Instruction<Int>, name: Name, parameters: List<Variable>):
         FunctionInstruction(name, parameters) {
 
     override fun invoke(processor: Processor, args: List<Int>): Int {
@@ -42,11 +42,11 @@ abstract class CompiledFunctionInstruction(val instruction: Instruction<Int>, na
     }
 }
 
-class PrelimFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Name>):
+class PrelimFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Variable>):
         CompiledFunctionInstruction(instruction, name, parameters) {
 }
 
-class OptFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Name>):
+class OptFunctionInstruction(instruction: Instruction<Int>, name: Name, parameters: List<Variable>):
         CompiledFunctionInstruction(instruction, name, parameters) {
 }
 

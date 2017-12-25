@@ -5,7 +5,7 @@ import jit.common.Compiler
 import jit.common.Instruction
 import jit.common.Statement
 
-open class AssignmentCode(val variable: VarCode, val value: Code<Int>): Statement<Int> {
+open class AssignmentCode(val variable: VariableMention, val value: Code<Int>): Statement<Int> {
     override fun toCompiler(compiler: Compiler): Instruction<Int> {
         return compiler.compile(this)
     }

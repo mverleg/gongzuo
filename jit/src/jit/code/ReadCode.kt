@@ -7,7 +7,7 @@ import jit.common.Instruction
 /**
  * Read the value of a variable.
  */
-open class ReadCode(val variable: VarCode): Code<Int> {
+open class ReadCode(val variable: VariableMention): Code<Int> {
     override fun toCompiler(compiler: Compiler): Instruction<Int> {
         return compiler.compile(this)
     }

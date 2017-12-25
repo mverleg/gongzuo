@@ -12,7 +12,9 @@ import jit.code.IfCode
 import jit.code.ReadCode
 import jit.code.ScopedBlock
 import jit.code.UnaryArithmCode
+import jit.code.VariableMention
 import jit.common.BinaryArithmOperation
+import jit.common.CompileInvalidCodeError
 import jit.common.Compiler
 import jit.common.Instruction
 import jit.common.InstructionList
@@ -23,7 +25,9 @@ import jit.instructions.AllocateInstruction
 import jit.instructions.ArithmeticInstruction
 import jit.instructions.CallInstruction
 import jit.instructions.PrelimFunctionInstruction
+import jit.common.Type
 import jit.instructions.ValueInstruction
+import jit.instructions.Variable
 import jit.instructions.WriteInstruction
 
 class PrelimCompiler: Compiler {
@@ -44,7 +48,8 @@ class PrelimCompiler: Compiler {
         }
         // Function parameters should also be deallocated, no?
         val instr = InstructionList(instructions[0], *instructions.subList(1, instructions.size).toTypedArray())
-        return PrelimFunctionInstruction(instr, func.name, func.parameters)
+        val params = func.parameters.map{ Variable(it, Type()) }
+        return PrelimFunctionInstruction(instr, func.name, params)
     }
 
     override fun compile(binArithmCode: BinArithmCode): Instruction<Int> {
@@ -59,7 +64,7 @@ class PrelimCompiler: Compiler {
         when (unaryArithmCode.operation) {
             UnaryArithmOperation.NEG -> return this.compile(BinArithmCode(BinaryArithmOperation.SUB, ConstCode(0), unaryArithmCode.code))
             UnaryArithmOperation.SQR -> {
-                val tmpVar = scopes.nearest().createTempVar()
+                val tmpVar = VariableMention(scopes.nearest().createTempVar(Type()).name)
                 return this.compile(CodeCombi(
                     AssignmentCode(tmpVar, unaryArithmCode.code),
                     last=BinArithmCode(BinaryArithmOperation.MUL, ReadCode(tmpVar), ReadCode(tmpVar))
@@ -105,18 +110,30 @@ class PrelimCompiler: Compiler {
         return InstructionList(instructions.first(), *instructions.subList(1, instructions.size).toTypedArray())
     }
 
+    override fun compile(declarationCode: DeclarationCode): Instruction<Int> {
+        val existingVar = scopes().getVar(declarationCode.assignment.variable.name)
+        if (existingVar != null) {
+            TODO("currently shadowing is not allowed, it should probably be allowed in the future")
+            throw CompileInvalidCodeError("name '${existingVar.name}' has already been declared")
+        }
+        val newVar = Variable(declarationCode.assignment.variable, Type())
+        return InstructionList(
+                AllocateInstruction(newVar),
+                declarationCode.assignment.toCompiler(this)
+        )
+    }
+
     override fun compile(assignmentCode: AssignmentCode): Instruction<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        println(scopes().toText())  // TODO
+        val existingVar = scopes().getVar(assignmentCode.variable.name)
+        if (existingVar == null) {
+            throw CompileInvalidCodeError("trying to assign to name '${assignmentCode.variable.name}' but it has not been declared")
+        }
+        return WriteInstruction(existingVar, assignmentCode.value.toCompiler(this))
     }
 
     override fun compile(readCode: ReadCode): Instruction<Int> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun compile(declarationCode: DeclarationCode): Instruction<Int> {
-        AllocateInstruction(declarationCode.assignment.variable.name)
-        WriteInstruction(declarationCode.assignment.variable.name, declarationCode.assignment.value.toCompiler(this))
-        TODO("deallocate")
     }
 
     override fun compile(funCallCode: FunCallCode): Instruction<Int> {

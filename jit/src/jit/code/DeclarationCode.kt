@@ -5,7 +5,7 @@ import jit.common.Compiler
 import jit.common.Instruction
 import jit.common.Statement
 
-class DeclarationCode(variable: VarCode, value: Code<Int>): Statement<Int> {
+class DeclarationCode(variable: VariableMention, value: Code<Int>): Statement<Int> {
 
     val assignment = AssignmentCode(variable, value)
 

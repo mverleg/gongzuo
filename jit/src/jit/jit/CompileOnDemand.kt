@@ -1,8 +1,10 @@
 package jit.jit
 
 import jit.code.FunDefCode
+import jit.common.Type
 import jit.hardware.Processor
 import jit.instructions.FunctionInstruction
+import jit.instructions.Variable
 import jit.prelim.PrelimCompiler
 
 /**
@@ -12,7 +14,7 @@ import jit.prelim.PrelimCompiler
  * I'm assuming here that the {@link Processor} can run the {@link Compiler} without my help.
  */
 class CompileOnDemand(val preComp: PrelimCompiler, val funCode: FunDefCode):
-        FunctionInstruction(funCode.name, funCode.parameters) {
+        FunctionInstruction(funCode.name, funCode.parameters.map{ Variable(it, Type()) }) {
 
     var isCompiled = false
 
