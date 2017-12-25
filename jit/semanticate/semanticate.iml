@@ -6,5 +6,8 @@
     <orderEntry type="jdk" jdkName="JVM 1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="module" module-name="utils" />
+    <orderEntry type="module" module-name="ast" />
+    <orderEntry type="module" module-name="ir" />
   </component>
 </module>
