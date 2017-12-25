@@ -6,8 +6,8 @@ import jit.common.Exec
 /**
  * This is the compiler which converts individual units to assembly.
  *
- * The compiler follows the visitor pattern, transforming the AST into executable code.
- * It operates on the code inside units (functions for now), stopping at boundaries.
+ * The compiler follows the visitor pattern, transforming the AST into executable ast.
+ * It operates on the ast inside units (functions for now), stopping at boundaries.
  *
  * Note that in reality, this would be two steps: convert AST to debug form,
  * and compile this form to assembly.

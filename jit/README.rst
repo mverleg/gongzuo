@@ -4,6 +4,36 @@ JIT
 
 The input code, here represented as an abstract syntax tree (AST), is converted to executable bytes, here represented as executable statements that are interpreted by a processor class.
 
+Process structure
+-------------------------------
+
+This package starts at AST and skips uniquifying and optimizing.
+
+TODO: find or invent better names for all stages
+
+* *Reading*
+* **Text**
+* *Lexing*
+* **Tokens**
+* *Parsing*: connect the tokens
+* **fast** (full aabstract syntax tree)
+* *Uniquify*: map multiple statements to the same construct
+* **last** (limited abstract syntax tree, subset of *FAST*)
+* *Semanticate* (semantic analysis): check types and signatures, connect variables
+* **IR** intermediary representation
+* *PI-opt* machine-independent optimizations
+* **IR** (still)
+* *Generation*
+* **target** representation at low or high level, depending on target; also optimized and preliminary mode
+* *PD-opt* platform-dependent optimizations
+* **target** (still)
+* *Writing*
+* **assembly** or other runnable target
+
+There is also a *Builder* that coordinates the process for multiple files, and a *Linker*, which communicates at the semantication step.
+
+There might at some point be a macro/template/... processor, but not yet, and maybe never.
+
 Compilation
 -------------------------------
 
