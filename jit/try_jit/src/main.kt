@@ -33,6 +33,7 @@ fun main(args: Array<String>) {
             ), Name("call_me"), listOf(VariableMention("arg_one")))
     ))
     print(source.toText())  // TODO
+    TODO("JIT should operate on IR, not source")
     JIT(source).run()
 //    HighProcessor(pack).run()
 }

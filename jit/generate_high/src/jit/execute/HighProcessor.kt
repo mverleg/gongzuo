@@ -1,4 +1,4 @@
-package jit.high
+package jit.execute
 
 import jit.common.Name
 import jit.common.Processor
@@ -9,7 +9,7 @@ import jit.instructions.FunctionInter
  * The processor executes the AST instructions. It may not do any special processing,
  * since the physical processor also cannot do that; the {@link JIT} must do this.
  */
-class HighProcessor(override val funDeclarations: MutableMap<Name, FunctionInter>): Processor {
+class HighProcessor(override val funDeclarations: MutableMap<Name, FunctionInter>) {
     override fun call(funName: Name, args: List<Int>): Int {
         val func = funDeclarations.get(funName)
         if (func == null) {

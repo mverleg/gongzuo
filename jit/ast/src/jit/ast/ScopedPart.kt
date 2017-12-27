@@ -1,11 +1,5 @@
 package jit.ast
 
-import jit.common.Code
-import jit.common.Compiler
-import jit.common.HasScope
-import jit.common.Inter
-import jit.common.Statement
-
 /**
  * Some statements followed by an expression (which produces the return value).
  */
