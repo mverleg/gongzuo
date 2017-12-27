@@ -2,6 +2,8 @@
 Gongzuo
 ===============================
 
-This repository contains code related to work, but not directly part of the product. E.g. experiments for better approaches are tested here.
+This repository contains experimental projects, some of them related to work (hence the name, which means "work"). E.g. experiments for better approaches are tested here.
+
+The succesful ones are moved to dedicated repositories, the unsuccesful ones are abandoned.
 
 
