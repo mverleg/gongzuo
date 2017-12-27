@@ -19,7 +19,11 @@ class BitShift(object):
 		self.amt = int(shift_bit_cnt)
 		self.data = list(data)
 		assert all(0 <= d < 256 for d in data)
-		min_shift = 8 * (len(self.data) - 1) + int(ceil(log(self.data[-1], 2)))
+		if (self.data[-1] == 0):
+			min_shift = 0
+		else:
+			min_shift = int(ceil(log(abs(self.data[-1]), 2)))
+		min_shift += 8 * (len(self.data) - 1)
 		if self.amt < min_shift:
 			raise InvalidShiftSize('shift {} too short for data {} (minimum {})'.format(
 				self.amt, self.data, min_shift))

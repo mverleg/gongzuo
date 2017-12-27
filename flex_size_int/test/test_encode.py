@@ -1,6 +1,6 @@
 
 from encode import long_to_flex, ulong_to_flex
-from utils import LASTBYTE, NEGATIVE, DATAPERBYTE, bin_to_txt, BitShift
+from utils import LASTBYTE, NEGATIVE, DATAPERBYTE, BitShift
 
 
 def test_long_to_flex():
@@ -11,7 +11,7 @@ def test_long_to_flex():
 	assert long_to_flex(115) == [0, LASTBYTE + 115]
 	assert long_to_flex(-115) == [NEGATIVE, LASTBYTE + 115]
 	assert long_to_flex(-413177) == [NEGATIVE + 25, 27, LASTBYTE + 121]
-	assert long_to_flex(9_223_372_036_854_775_807) == [0, 127, 127, 127, 127, 127, 127, 127, 127, LASTBYTE + 127]
+	assert long_to_flex(9223372036854775807) == [0, 127, 127, 127, 127, 127, 127, 127, 127, LASTBYTE + 127]
 
 
 def test_ulong_to_flex():
@@ -26,9 +26,11 @@ def test_ulong_to_flex():
 
 
 def test_ulong_to_flex_shift():
-	assert ulong_to_flex(0, shift=BitShift(3, [7])) == [240]  # last
-	assert ulong_to_flex(0, shift=BitShift(3, [1, 0, 7])) == [1, 0, 7 + LASTBYTE]
-	
+	assert ulong_to_flex(12, shift=BitShift(0, [0])) == [12 + LASTBYTE]
+	assert ulong_to_flex(12, shift=BitShift(1, [1])) == [24 + 1 + LASTBYTE]
+	assert ulong_to_flex(0, shift=BitShift(3, [7])) == [7 + LASTBYTE]
+	assert ulong_to_flex(0, shift=BitShift(19, [1, 0, 7])) == [1, 0, 7 + LASTBYTE]
+	#TODO: more!
 	# assert ulong_to_flex(63) == [63 + LASTBYTE]
 	# assert ulong_to_flex(64) == [64 + LASTBYTE]
 	# assert ulong_to_flex(127) == [127 + LASTBYTE]

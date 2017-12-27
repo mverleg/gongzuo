@@ -11,7 +11,8 @@ Integers are stored in blocks of bytes (8 bits each), as follows:
 * All bytes up to and including the first one that starts with ``1`` are concatenated except their first used bit.
 * Like standard integers, the first data bit indicates positive (``0``) or negative (``1``).
 * The data bits after the sign are ordered from most to least significant, representing the absolute value (this is unlike the typical two-complements storage method, which is less logical in this case because the range is flexible).
-* The first byte may be shifted by up to 7 bits. This leaves between 2 and 8 bits for storage or between 0 and 6 for the number, on the least significant side.
+* Up to 7 bits of the first byte may be used for other data. The least significant bits are used (for performance and simplicity of implementation reasons) for the other data and the most significant for the the flexible integer.
+    E.g. if the prior data is 11 bits ``XXXX XXXX XXX``, there could be 13 for the flexible int (``YYYY YYYY YYYY Y``), which are combined as ``XXXX XXXX | YYYY Y XXX | YYYY YYYY``.
 * Storage is big-endian.
 * Byte ``11000000`` is the only invalid value (since ``-0`` is the same as ``+0``).
 
