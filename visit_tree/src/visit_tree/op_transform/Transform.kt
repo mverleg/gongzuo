@@ -20,11 +20,11 @@ class Transform: TreeVisitor<TransformedElem> {
         return top
     }
 
-    override fun visit(tree: Leaf): TransformedLeaf {
+    override fun visit(leaf: Leaf): TransformedLeaf {
         return TransformedLeaf()
     }
 
-    override fun visit(tree: Split): TransformedSplit {
+    override fun visit(split: Split): TransformedSplit {
         return TransformedSplit()
     }
 }

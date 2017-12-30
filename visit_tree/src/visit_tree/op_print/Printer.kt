@@ -9,11 +9,11 @@ class Printer: TreeVisitor<CharSequence> {
         return inputs.joinToString(" ")
     }
 
-    override fun visit(tree: Leaf): CharSequence {
+    override fun visit(leaf: Leaf): CharSequence {
         return "leaf"
     }
 
-    override fun visit(tree: Split): CharSequence {
+    override fun visit(split: Split): CharSequence {
         return "split"
     }
 }
