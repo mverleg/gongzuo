@@ -4,4 +4,5 @@ interface TreeElem {
 
     fun <T> accept(visitor: TreeVisitor<T>): T
 
+    fun <T> acceptSimple(visitor: ExTreeVisitor<T>): T
 }

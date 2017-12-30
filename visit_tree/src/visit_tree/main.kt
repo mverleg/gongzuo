@@ -2,6 +2,7 @@ package visit_tree
 
 import visit_tree.data.Leaf
 import visit_tree.data.Split
+import visit_tree.ex_vis_xml.ExVisXml
 import visit_tree.ex_xml.XmlEx
 import visit_tree.op_flatten.Flatten
 import visit_tree.op_print.Printer
@@ -28,6 +29,10 @@ fun main(args: Array<String>) {
     println(tree.accept(Transform()).toDebugText())
     println(tree.accept(Flatten()).map { it.toDebugText() })
     println(XmlEx().transform(tree))
+    /**
+     * This is the way to go: simple accept method which just calls visit and passes on the return value.
+     */
+    println(ExVisXml().visit(tree))
 }
 
 
