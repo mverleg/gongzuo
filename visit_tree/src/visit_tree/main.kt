@@ -19,7 +19,9 @@ fun main(args: Array<String>) {
             )
     )
     val printer = Printer()
-    println(printer.visit(tree))
+    // TODO: here I also typed printer.visit(tree) at first, which only visits one node; how to avoid?
+    // .visit should only be callable from the data, and only for it's own data type; this seems impossible to enforce automatically
+    println(tree.accept(printer))
 }
 
 
