@@ -1,14 +1,21 @@
 package rotate
 
-class View(val map: Map, val width: Int = 8, val height: Int = 5) {
+import java.lang.Math.ceil
+
+/**
+ * Width and height must be odd positive numbers.
+ */
+class View(val map: Map, val width: Int = 9, val height: Int = 5) {
 
     var horizontalMiddle: Int = map.width / 2
-    var verticalMiddle: Int = map.width / 2
+    var verticalMiddle: Int = map.height / 2
     var quarterRotations: Int = 0
 
     init {
         val maxMapDim = if (map.width > map.height) map.width else map.height
+        check(width % 2 == 1, { "width must be odd" })
         check(width in 1..maxMapDim)
+        check(height % 2 == 1, { "height must be odd" })
         check(height in 1..maxMapDim)
     }
 
@@ -49,24 +56,28 @@ class View(val map: Map, val width: Int = 8, val height: Int = 5) {
         return textRepr
     }
 
+    fun statusInfo(): CharSequence {
+        return "${horizontalMiddle}/${map.width} x ${verticalMiddle}/${map.height} ; ${90*quarterRotations} deg"
+    }
+
     /**
      * Shift the view up/down/left/right.
      */
     fun shift(horizontal: Int, vertical: Int) {
-        horizontalMiddle -= horizontal
-        verticalMiddle -= vertical
+        horizontalMiddle += horizontal
+        verticalMiddle += vertical
         // Could just use min/max functions; I find this more readable
         if (horizontalMiddle < (width / 2)) {
             horizontalMiddle = (width / 2)
         }
-        if (horizontalMiddle > map.width - (width / 2)) {
-            horizontalMiddle = map.width - (width / 2)
+        if (horizontalMiddle >= map.width - (width / 2)) {
+            horizontalMiddle = map.width - (width / 2) - 1
         }
         if (verticalMiddle < (height / 2)) {
             verticalMiddle = (height / 2)
         }
-        if (verticalMiddle > map.height - (height / 2)) {
-            verticalMiddle = map.height - (height / 2)
+        if (verticalMiddle >= map.height - (height / 2)) {
+            verticalMiddle = map.height - (height / 2) - 1
         }
     }
 
