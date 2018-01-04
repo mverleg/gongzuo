@@ -1,7 +1,5 @@
 package rotate
 
-import java.lang.Math.ceil
-
 /**
  * Width and height must be odd positive numbers.
  */
@@ -23,8 +21,17 @@ class View(val map: Map, val width: Int = 9, val height: Int = 5) {
      * Transform from view coordinates to map coordinates.
      */
     private fun transform(viewX: Int, viewY: Int): Pair<Int, Int> {
-        val mapX = viewX + horizontalMiddle - (width / 2).toInt()
-        val mapY = viewY + verticalMiddle - (height / 2).toInt()
+        val mapX: Int
+        val mapY: Int
+        val sign = if (quarterRotations <= 1) +1 else -1
+        if (quarterRotations % 2 == 0) {
+            // view's horizontal aligned with map horizontal
+            mapX = sign * viewX + horizontalMiddle
+            mapY = sign * viewY + verticalMiddle
+        } else {
+            mapX = sign * viewY + verticalMiddle
+            mapY = sign * viewX + horizontalMiddle
+        }
         return Pair(mapX, mapY)
     }
 
@@ -39,9 +46,9 @@ class View(val map: Map, val width: Int = 9, val height: Int = 5) {
             textRepr.append('-')
         }
         textRepr.append('+').append('\n')
-        for (viewY in 0 until height) {
+        for (viewY in -(height / 2)..(height / 2)) {
             textRepr.append('|')
-            for (viewX in 0 until width) {
+            for (viewX in -(width / 2)..(width / 2)) {
                 val mapCoord = transform(viewX, viewY)
                 val tile = map.get(mapCoord.first, mapCoord.second)
                 textRepr.append(tile.getChar())
@@ -57,7 +64,7 @@ class View(val map: Map, val width: Int = 9, val height: Int = 5) {
     }
 
     fun statusInfo(): CharSequence {
-        return "${horizontalMiddle}/${map.width} x ${verticalMiddle}/${map.height} ; ${90*quarterRotations} deg"
+        return "${horizontalMiddle}/${getMapHorDim()} x ${verticalMiddle}/${getMapVerDim()} ; ${90*quarterRotations} deg"
     }
 
     /**
@@ -66,19 +73,7 @@ class View(val map: Map, val width: Int = 9, val height: Int = 5) {
     fun shift(horizontal: Int, vertical: Int) {
         horizontalMiddle += horizontal
         verticalMiddle += vertical
-        // Could just use min/max functions; I find this more readable
-        if (horizontalMiddle < (width / 2)) {
-            horizontalMiddle = (width / 2)
-        }
-        if (horizontalMiddle >= map.width - (width / 2)) {
-            horizontalMiddle = map.width - (width / 2) - 1
-        }
-        if (verticalMiddle < (height / 2)) {
-            verticalMiddle = (height / 2)
-        }
-        if (verticalMiddle >= map.height - (height / 2)) {
-            verticalMiddle = map.height - (height / 2) - 1
-        }
+        stayInsideMap()
     }
 
     /**
@@ -86,6 +81,38 @@ class View(val map: Map, val width: Int = 9, val height: Int = 5) {
      */
     fun rotate(quartersClockwise: Int) {
         quarterRotations = (quarterRotations + quartersClockwise) % 4
+        // Swap horizontal and vertical coordinates
+        val tmp = horizontalMiddle
+        horizontalMiddle = verticalMiddle
+        verticalMiddle = tmp
+        stayInsideMap()
+    }
+
+    private fun stayInsideMap() {
+        // Could just use min/max functions; I find this more readable
+        if (horizontalMiddle < (width / 2)) {
+            horizontalMiddle = (width / 2)
+        }
+        if (horizontalMiddle >= getMapHorDim() - (width / 2)) {
+            horizontalMiddle = getMapHorDim() - (width / 2) - 1
+        }
+        if (verticalMiddle < (height / 2)) {
+            verticalMiddle = (height / 2)
+        }
+        if (verticalMiddle >= getMapVerDim() - (height / 2)) {
+            verticalMiddle = getMapVerDim() - (height / 2) - 1
+        }
+    }
+
+    /**
+     * Get the dimension of the map that is aligned with the horizontal of the view
+     * (this is the width or height, depending on rotation)
+     */
+    private fun getMapHorDim(): Int {
+        return if (quarterRotations % 2 == 0) map.width else map.height
+    }
+    private fun getMapVerDim(): Int {
+        return if (quarterRotations % 2 == 0) map.height else map.width
     }
 }
 

@@ -14,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/jit/jit/jit.iml" filepath="$PROJECT_DIR$/jit/jit/jit.iml" />
       <module fileurl="file://$PROJECT_DIR$/mastermind/mastermind.iml" filepath="$PROJECT_DIR$/mastermind/mastermind.iml" />
       <module fileurl="file://$PROJECT_DIR$/par/par.iml" filepath="$PROJECT_DIR$/par/par.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rotate/rotate.iml" filepath="$PROJECT_DIR$/rotate/rotate.iml" />
       <module fileurl="file://$PROJECT_DIR$/jit/semanticate/semanticate.iml" filepath="$PROJECT_DIR$/jit/semanticate/semanticate.iml" />
       <module fileurl="file://$PROJECT_DIR$/jit/target_high/target_high.iml" filepath="$PROJECT_DIR$/jit/target_high/target_high.iml" />
       <module fileurl="file://$PROJECT_DIR$/jit/target_low/target_low.iml" filepath="$PROJECT_DIR$/jit/target_low/target_low.iml" />

@@ -14,7 +14,7 @@ class Input {
     class Operation(val type: OperationType, val amount: Int)
 
     /**
-     * Read command letters from a line of input.
+     * Read command letters from a line of input and return objects that represent the action to take.
      */
     fun awaitCommand(): List<Operation> {
         val ops: MutableList<Operation> = mutableListOf()
