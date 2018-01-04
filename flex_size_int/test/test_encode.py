@@ -19,10 +19,16 @@ def test_ulong_to_flex():
 	assert ulong_to_flex(63) == [63 + LASTBYTE]
 	assert ulong_to_flex(64) == [64 + LASTBYTE]
 	assert ulong_to_flex(127) == [127 + LASTBYTE]
+	assert ulong_to_flex(128) == [1, LASTBYTE]
 	assert ulong_to_flex(16383) == [DATAPERBYTE - 1, DATAPERBYTE - 1 + LASTBYTE]
 	assert ulong_to_flex(16384) == [1, 0, LASTBYTE]
 	assert ulong_to_flex(2**24) == [8, 0, 0, LASTBYTE]
 	assert ulong_to_flex(2**49) == [1, 0, 0, 0, 0, 0, 0, LASTBYTE]
+
+
+def test_long_to_flex_shift():
+	#TODO
+	pass
 
 
 def test_ulong_to_flex_shift():
@@ -38,4 +44,5 @@ def test_ulong_to_flex_shift():
 	# assert ulong_to_flex(16384) == [1, 0, LASTBYTE]
 	# assert ulong_to_flex(2**24) == [8, 0, 0, LASTBYTE]
 	# assert ulong_to_flex(2**49) == [1, 0, 0, 0, 0, 0, 0, LASTBYTE]
+
 

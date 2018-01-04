@@ -11,10 +11,6 @@ class BlockInter(val name: Name, val instructions: InterList):
     constructor(name: Name, first: Inter<Int>, vararg otherInters: Inter<Int>):
             this(name, InterList(first, *otherInters))
 
-    override fun run(processor: HighProcessor): Int {
-        return instructions.run(processor)
-    }
-
     override fun toText(): CharSequence {
         val text = StringBuilder(name.toString()).append(":\n\t")
         text.append(instructions.toText())

@@ -4,9 +4,6 @@ import jit.common.BinaryNumberLogicOperation
 import jit.common.Inter
 
 class LogicInter(val operation: BinaryNumberLogicOperation, val leftInter: Inter<Int>, val rightInter: Inter<Int>): Inter<Boolean> {
-    override fun run(processor: HighProcessor): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
    override fun toText(): String {
        when (operation) {

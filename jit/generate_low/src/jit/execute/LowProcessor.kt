@@ -1,13 +1,14 @@
-package jit.low
+package jit.execute
 
 import jit.common.Name
-import jit.common.Processor
 import jit.common.RuntimeInvalidCodeError
 import jit.instructions.FunctionInter
+import javax.annotation.processing.Processor
 
 /**
- * The processor executes the low-level blocks. It may not do any special processing,
- * since the physical processor also cannot do that; the {@link JIT} must do this.
+ * The processor executes the low-level blocks. Somewhat similar to LLVM IR level of abstraction.
+ *
+ * It may not do any special processing, since the physical processor also cannot do that; the {@link JIT} must do this.
  */
 class LowProcessor(override val funDeclarations: MutableMap<Name, FunctionInter>): Processor {
     override fun call(funName: Name, args: List<Int>): Int {

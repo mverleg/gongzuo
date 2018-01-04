@@ -17,10 +17,6 @@ class ConditionalJumpInter(val condition: Inter<Boolean>, val thenInstructions: 
         generateIndex++
     }
 
-    override fun run(processor: HighProcessor): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun toText(): CharSequence
 }
 

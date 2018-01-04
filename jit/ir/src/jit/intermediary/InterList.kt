@@ -37,14 +37,6 @@ class InterList(val first: Inter<Int>, vararg val otherInters: Inter<Int>):
         inters = flattenedInters
     }
 
-    override fun run(processor: HighProcessor): Int {
-        var result = first.run(processor)
-        for (instr in otherInters) {
-            result = instr.run(processor)
-        }
-        return result
-    }
-
     override fun toText(): CharSequence {
         val text = StringBuilder()
         for (instruction in otherInters) {

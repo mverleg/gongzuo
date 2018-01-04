@@ -5,10 +5,6 @@ import jit.common.Inter
 
 class ArithmeticInter(val operation: BinaryArithmOperation, val leftInter: Inter<Int>, val rightInter: Inter<Int>): Inter<Int> {
 
-    override fun run(processor: HighProcessor): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun toText(): String {
         when (operation) {
             BinaryArithmOperation.ADD -> return "add i32" + leftInter.toText() + ", " + rightInter.toText()
