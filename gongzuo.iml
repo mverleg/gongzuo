@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/binary_json/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/flex_size_int/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/flex_size_int/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/rotate/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
