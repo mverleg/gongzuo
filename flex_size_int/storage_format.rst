@@ -19,7 +19,7 @@ Integers are stored in blocks of bytes (8 bits each), as follows:
 Unsigned
 -------------------------------
 
-Unsigned integers are stored the same way, except that the sign bit is used for data.
+Unsigned integers are stored the same way, except that the sign bit is used for data. There is no invalid value.
 
 Examples
 -------------------------------

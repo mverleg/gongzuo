@@ -4,6 +4,7 @@ from math import log, ceil
 
 DATAPERBYTE = LASTBYTE = 1 << 7
 NEGATIVE = 1 << 6
+POSITIVE = 0
 
 
 class InvalidFlexInt(Exception):

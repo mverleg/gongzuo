@@ -1,17 +1,30 @@
 
 from encode import long_to_flex, ulong_to_flex
-from utils import LASTBYTE, NEGATIVE, DATAPERBYTE, BitShift
+from utils import LASTBYTE, POSITIVE, NEGATIVE, DATAPERBYTE, BitShift
 
 
 def test_long_to_flex():
-	assert long_to_flex(0) == [LASTBYTE]
-	assert long_to_flex(25) == [LASTBYTE + 25]
-	assert long_to_flex(58) == [LASTBYTE + 58]
-	assert long_to_flex(129) == [1, LASTBYTE + 1]
-	assert long_to_flex(115) == [0, LASTBYTE + 115]
-	assert long_to_flex(-115) == [NEGATIVE, LASTBYTE + 115]
-	assert long_to_flex(-413177) == [NEGATIVE + 25, 27, LASTBYTE + 121]
-	assert long_to_flex(9223372036854775807) == [0, 127, 127, 127, 127, 127, 127, 127, 127, LASTBYTE + 127]
+	assert [POSITIVE + LASTBYTE] == long_to_flex(0) 
+	assert [POSITIVE + LASTBYTE + 25] == long_to_flex(25) 
+	assert [POSITIVE + LASTBYTE + 58] == long_to_flex(58) 
+	assert [POSITIVE + 0, LASTBYTE + 115] == long_to_flex(115) 
+	assert [NEGATIVE, LASTBYTE + 115] == long_to_flex(-115) 
+	assert [NEGATIVE + 25, 27, LASTBYTE + 121] == long_to_flex(-413177) 
+	assert [0, 127, 127, 127, 127, 127, 127, 127, 127, LASTBYTE + 127] == long_to_flex(9223372036854775807) 
+	""" Cover edge cases """
+	for (signbit, sign) in ((POSITIVE, +1), (NEGATIVE, -1)):
+		assert [signbit + LASTBYTE + 63] == long_to_flex(sign * 63) 
+		assert [signbit + 0, LASTBYTE + 64] == long_to_flex(sign * 64) 
+		assert [signbit + 0, LASTBYTE + 127] == long_to_flex(sign * 127) 
+		assert [signbit + 1, LASTBYTE] == long_to_flex(sign * 128) 
+		assert [signbit + 1, LASTBYTE + 1] == long_to_flex(sign * 129) 
+		assert [signbit + 1, LASTBYTE + DATAPERBYTE - 1] == long_to_flex(sign * 255) 
+		assert [signbit + 2, LASTBYTE] == long_to_flex(sign * 256) 
+		assert [signbit + 4, LASTBYTE] == long_to_flex(sign * 512) 
+		assert [signbit + 63, LASTBYTE + DATAPERBYTE - 1] == long_to_flex(sign * 8191) 
+		assert [signbit, 8192 // (2 ** 7), LASTBYTE] == long_to_flex(sign * 8192) 
+		assert [signbit, DATAPERBYTE - 1, LASTBYTE + DATAPERBYTE - 1] == long_to_flex(sign * 16383) 
+		assert [signbit + 1, 0, LASTBYTE] == long_to_flex(sign * 16384)
 
 
 def test_ulong_to_flex():
