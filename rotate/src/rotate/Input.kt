@@ -13,19 +13,33 @@ class Input {
     // but in this case they are all single small integers anyway
     class Operation(val type: OperationType, val amount: Int)
 
-    fun awaitCommand(): Operation {
+    /**
+     * Read command letters from a line of input and return objects that represent the action to take.
+     */
+    fun awaitCommand(): List<Operation> {
+        val ops: MutableList<Operation> = mutableListOf()
         val command = BufferedReader(InputStreamReader(System.`in`))
-        return when (command.readLine()) {
-            "w" -> Operation(OperationType.VER_SHIFT, -1)
-            "s" -> Operation(OperationType.VER_SHIFT, +1)
-            "a" -> Operation(OperationType.HOR_SHIFT, -1)
-            "d" -> Operation(OperationType.HOR_SHIFT, +1)
-            "l" -> Operation(OperationType.ROTATE, -1)
-            "r" -> Operation(OperationType.ROTATE, +1)
-            else -> {
-                println("enter one of w/a/s/d/l/r")
-                return awaitCommand()
+        var shownInfo = false;
+        for (chr in command.readLine().toCharArray()) {
+            val op = when (chr) {
+                'w' -> Operation(OperationType.VER_SHIFT, -1)
+                's' -> Operation(OperationType.VER_SHIFT, +1)
+                'a' -> Operation(OperationType.HOR_SHIFT, -1)
+                'd' -> Operation(OperationType.HOR_SHIFT, +1)
+                'l' -> Operation(OperationType.ROTATE, -1)
+                'r' -> Operation(OperationType.ROTATE, +1)
+                else -> {
+                    if (!shownInfo) {
+                        shownInfo = true
+                        println("enter one or more of w/a/s/d/l/r")
+                    }
+                    null
+                }
+            }
+            if (op != null) {
+                ops.add(op)
             }
         }
+        return ops
     }
 }
