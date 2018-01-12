@@ -1,8 +1,15 @@
-package binary_json
+package test
 
-import java.io.StringReader
+import binary_json.JSON
+import binary_json.JSONBoolean
+import binary_json.JSONInt
+import binary_json.JSONList
+import binary_json.JSONObject
+import binary_json.JSONString
+import binary_json.dump
+import binary_json.load
 
-fun main(args: Array<String>) {
+fun test_parse_json(): JSON {
     val json: JSON = JSONObject(mapOf(
             JSONString("age") to JSONInt(29),
             JSONString("name") to JSONString("Mark"),
@@ -10,7 +17,7 @@ fun main(args: Array<String>) {
             JSONString("pets") to JSONList(listOf(JSONInt(1), JSONInt(1),
                     JSONInt(2), JSONInt(3), JSONInt(5), JSONInt(8)))
     ))
-    println(PeekReader(StringReader(dump(json).toString())))
+    val txt = dump(json)
+    val back = load(txt)
+
 }
-
-

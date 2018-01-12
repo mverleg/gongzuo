@@ -88,7 +88,7 @@ def _determine_byte_count(numerical_value, fixed_data_bits):
 	else:
 		# Use this instead of logarithm because logarithm has rounding errors for large numbers.
 		number_bits = abs(numerical_value).bit_length()
-	continuation_bits = int(floor(number_bits / 7.))
+	continuation_bits = int(ceil(number_bits / 7.))
 	return int(ceil((number_bits + continuation_bits + fixed_data_bits) / 8.))
 
 

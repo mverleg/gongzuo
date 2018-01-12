@@ -45,17 +45,18 @@ def test_long_to_flex_shift():
 
 
 def test_ulong_to_flex_shift():
-	assert ulong_to_flex(12, shift=BitShift(0, [0])) == [12 + LASTBYTE]
-	assert ulong_to_flex(12, shift=BitShift(1, [1])) == [24 + 1 + LASTBYTE]
-	assert ulong_to_flex(0, shift=BitShift(3, [7])) == [7 + LASTBYTE]
-	assert ulong_to_flex(0, shift=BitShift(19, [1, 0, 7])) == [1, 0, 7 + LASTBYTE]
-	#TODO: more!
-	# assert ulong_to_flex(63) == [63 + LASTBYTE]
-	# assert ulong_to_flex(64) == [64 + LASTBYTE]
-	# assert ulong_to_flex(127) == [127 + LASTBYTE]
-	# assert ulong_to_flex(16383) == [DATAPERBYTE - 1, DATAPERBYTE - 1 + LASTBYTE]
-	# assert ulong_to_flex(16384) == [1, 0, LASTBYTE]
-	# assert ulong_to_flex(2**24) == [8, 0, 0, LASTBYTE]
-	# assert ulong_to_flex(2**49) == [1, 0, 0, 0, 0, 0, 0, LASTBYTE]
+	# 1000_1100
+	# 1001_1000
+	# 1110_0xxx
+	assert ulong_to_flex(12, shift=BitShift(0, [0])) == [12 + LASTBYTE]  # 1000_1100
+	assert ulong_to_flex(12, shift=BitShift(1, [1])) == [(12 << 1) + 1 + LASTBYTE]  # 1001_1001
+	assert ulong_to_flex(12, shift=BitShift(2, [3])) == [(12 << 2) + 3 + LASTBYTE]  # 1011_0011
+	assert ulong_to_flex(12, shift=BitShift(3, [7])) == [(12 << 3) + 7 + LASTBYTE]  # 1110_0111
+	assert ulong_to_flex(12, shift=BitShift(4, [15])) == [15, 12 + LASTBYTE]  # 0000_1111 / 1000_1100
+	assert ulong_to_flex(12, shift=BitShift(5, [31])) == [31, 12 + LASTBYTE]  # 0001_1111 / 1000_1100
+	assert ulong_to_flex(12, shift=BitShift(6, [63])) == [63, 12 + LASTBYTE]  # 0011_1111 / 1000_1100
+	assert ulong_to_flex(12, shift=BitShift(7, [127])) == [127, 12 + LASTBYTE]  # 0111_1111 / 1000_1100
+	assert ulong_to_flex(12, shift=BitShift(8, [255])) == [255, 12 + LASTBYTE]  # 1111_1111 / 1000_1100
+	assert ulong_to_flex(12, shift=BitShift(9, [511])) == [255, (12 << 1) + 1 + LASTBYTE]  # 1111_1111 / 1001_1001
 
 
