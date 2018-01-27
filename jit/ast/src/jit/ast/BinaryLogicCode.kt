@@ -1,6 +1,6 @@
 package jit.ast
 
-import jit.common.BinaryNumberLogicOperation
+import jit.utils.BinaryNumberLogicOperation
 import jit.common.Code
 import jit.common.Compiler
 import jit.common.Inter

@@ -1,7 +1,6 @@
-package jit.instructions
+package jit.intermediary
 
-import jit.common.Inter
-import jit.common.genSequenceStr
+import jit.utils.genSequenceStr
 
 class ConditionalJumpInter(val condition: Inter<Boolean>, val thenInstructions: Inter<Int>,
                            val elseInstructions: Inter<Int>): Inter<Int> {

@@ -1,7 +1,6 @@
-package jit.instructions
+package jit.intermediary
 
-import jit.common.Inter
-import jit.common.Name
+import jit.utils.Name
 
 class CallInter(val name: Name, val args: List<Inter<Int>>): Inter<Int> {
 

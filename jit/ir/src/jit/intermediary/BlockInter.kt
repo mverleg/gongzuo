@@ -1,7 +1,6 @@
-package jit.instructions
+package jit.intermediary
 
-import jit.common.Inter
-import jit.common.Name
+import jit.utils.Name
 
 /**
  * A named block with a list of inters, that can be jumped between.

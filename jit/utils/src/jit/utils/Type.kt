@@ -1,4 +1,4 @@
-package jit.common
+package jit.utils
 
 class Type {
     enum class Primitive {

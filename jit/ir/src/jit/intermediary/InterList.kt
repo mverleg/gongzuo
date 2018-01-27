@@ -1,6 +1,4 @@
-package jit.instructions
-
-import jit.common.Inter
+package jit.intermediary
 
 /**
  * A list of at least one inters, which is itself an inters.

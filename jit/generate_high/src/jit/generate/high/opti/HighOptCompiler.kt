@@ -1,5 +1,6 @@
-package jit.high.opti
+package jit.generate.high.opti
 
 class HighOptGenerator: HighGenerator {
 
 }
+

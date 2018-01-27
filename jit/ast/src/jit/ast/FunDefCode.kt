@@ -2,7 +2,7 @@ package jit.ast
 
 import jit.common.Code
 import jit.common.HasScope
-import jit.common.Name
+import jit.utils.Name
 
 class FunDefCode(val body: Code<Int>, val name: Name, val parameters: List<VariableMention>): HasScope {
 

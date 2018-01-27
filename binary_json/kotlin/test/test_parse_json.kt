@@ -6,8 +6,10 @@ import binary_json.JSONInt
 import binary_json.JSONList
 import binary_json.JSONObject
 import binary_json.JSONString
+import binary_json.PeekReader
 import binary_json.dump
 import binary_json.load
+import java.io.StringReader
 
 fun test_parse_json(): JSON {
     val json: JSON = JSONObject(mapOf(
@@ -18,6 +20,6 @@ fun test_parse_json(): JSON {
                     JSONInt(2), JSONInt(3), JSONInt(5), JSONInt(8)))
     ))
     val txt = dump(json)
-    val back = load(txt)
+    val back = load(PeekReader(StringReader(txt)))
 
 }

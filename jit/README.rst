@@ -16,7 +16,7 @@ TODO: find or invent better names for all stages
 * *Lexing*
 * **Tokens**
 * *Parsing*: connect the tokens
-* **fast** (full aabstract syntax tree)
+* **fast** (full abstract syntax tree)
 * *Uniquify*: map multiple statements to the same construct
 * **last** (limited abstract syntax tree, subset of *FAST*)
 * *Semanticate* (semantic analysis): check types and signatures, connect variables

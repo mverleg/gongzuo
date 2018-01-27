@@ -1,4 +1,4 @@
-package jit.common
+package jit.utils
 
 abstract class InvalidCodeError(msg: String): RuntimeException(msg) {
     /**

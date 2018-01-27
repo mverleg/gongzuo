@@ -11,10 +11,10 @@ import jit.ast.PackageCode
 import jit.ast.ReadCode
 import jit.ast.UnaryArithmCode
 import jit.ast.VariableMention
-import jit.common.BinaryArithmOperation
-import jit.common.BinaryNumberLogicOperation
-import jit.common.Name
-import jit.common.UnaryArithmOperation
+import jit.utils.BinaryArithmOperation
+import jit.utils.BinaryNumberLogicOperation
+import jit.utils.Name
+import jit.utils.UnaryArithmOperation
 import jit.jit.JIT
 
 fun main(args: Array<String>) {

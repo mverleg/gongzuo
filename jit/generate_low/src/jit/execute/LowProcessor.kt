@@ -1,7 +1,7 @@
 package jit.execute
 
-import jit.common.Name
-import jit.common.RuntimeInvalidCodeError
+import jit.utils.Name
+import jit.utils.RuntimeInvalidCodeError
 import jit.instructions.FunctionInter
 import javax.annotation.processing.Processor
 

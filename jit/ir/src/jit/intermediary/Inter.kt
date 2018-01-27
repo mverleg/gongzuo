@@ -1,4 +1,4 @@
-package jit.common
+package jit.intermediary
 
 /**
  * A hardware inters that the {@link HighProcessor} can run.

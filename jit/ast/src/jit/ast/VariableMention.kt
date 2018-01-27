@@ -1,6 +1,6 @@
 package jit.ast
 
-import jit.common.Name
+import jit.utils.Name
 
 // Only integer variables for now
 class VariableMention(val name: Name) {

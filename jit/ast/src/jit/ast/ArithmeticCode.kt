@@ -1,10 +1,9 @@
 package jit.ast
 
-import jit.common.BinaryArithmOperation
-import jit.common.Code
+import jit.utils.BinaryArithmOperation
 import jit.common.Compiler
 import jit.common.Inter
-import jit.common.UnaryArithmOperation
+import jit.utils.UnaryArithmOperation
 
 class BinArithmCode(var operation: BinaryArithmOperation, val leftCode: Code<Int>, val rightCode: Code<Int>): Code<Int> {
 

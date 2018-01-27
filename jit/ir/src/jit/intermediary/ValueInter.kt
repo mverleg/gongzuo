@@ -1,6 +1,4 @@
-package jit.instructions
-
-import jit.common.Inter
+package jit.intermediary
 
 class ValueInter<RT>(val value: RT): Inter<RT> {
 
