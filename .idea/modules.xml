@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/jit/ast/ast.iml" filepath="$PROJECT_DIR$/jit/ast/ast.iml" />
-      <module fileurl="file://$PROJECT_DIR$/binary_json/binary_json.iml" filepath="$PROJECT_DIR$/binary_json/binary_json.iml" />
-      <module fileurl="file://$PROJECT_DIR$/flex_size_int/flex_size_int.iml" filepath="$PROJECT_DIR$/flex_size_int/flex_size_int.iml" />
       <module fileurl="file://$PROJECT_DIR$/formfields/formfields.iml" filepath="$PROJECT_DIR$/formfields/formfields.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/generate_common/generate_common.iml" filepath="$PROJECT_DIR$/jit/generate_common/generate_common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/generate_high/generate_high.iml" filepath="$PROJECT_DIR$/jit/generate_high/generate_high.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/generate_low/generate_low.iml" filepath="$PROJECT_DIR$/jit/generate_low/generate_low.iml" />
       <module fileurl="file://$PROJECT_DIR$/gongzuo.iml" filepath="$PROJECT_DIR$/gongzuo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/ir/ir.iml" filepath="$PROJECT_DIR$/jit/ir/ir.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/jit/jit.iml" filepath="$PROJECT_DIR$/jit/jit/jit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mastermind/mastermind.iml" filepath="$PROJECT_DIR$/mastermind/mastermind.iml" />
-      <module fileurl="file://$PROJECT_DIR$/par/par.iml" filepath="$PROJECT_DIR$/par/par.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rotate/rotate.iml" filepath="$PROJECT_DIR$/rotate/rotate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/semanticate/semanticate.iml" filepath="$PROJECT_DIR$/jit/semanticate/semanticate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/target_high/target_high.iml" filepath="$PROJECT_DIR$/jit/target_high/target_high.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/target_low/target_low.iml" filepath="$PROJECT_DIR$/jit/target_low/target_low.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/try_jit/try_jit.iml" filepath="$PROJECT_DIR$/jit/try_jit/try_jit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/patternsGoF/patternsGoF.iml" filepath="$PROJECT_DIR$/patternsGoF/patternsGoF.iml" />
       <module fileurl="file://$PROJECT_DIR$/unsafestring/unsafestring.iml" filepath="$PROJECT_DIR$/unsafestring/unsafestring.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jit/utils/utils.iml" filepath="$PROJECT_DIR$/jit/utils/utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/various/various.iml" filepath="$PROJECT_DIR$/various/various.iml" />
       <module fileurl="file://$PROJECT_DIR$/visit_tree/visit_tree.iml" filepath="$PROJECT_DIR$/visit_tree/visit_tree.iml" />
     </modules>
   </component>
