@@ -17,5 +17,6 @@
         </value>
       </option>
     </inspection_tool>
+    <inspection_tool class="RawTypeCanBeGeneric" enabled="true" level="ERROR" enabled_by_default="true" />
   </profile>
 </component>
