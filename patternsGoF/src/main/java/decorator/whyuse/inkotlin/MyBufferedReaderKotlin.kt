@@ -1,4 +1,4 @@
-package decorator.inkotlin
+package decorator.whyuse.inkotlin
 
 import java.util.LinkedList
 

@@ -1,16 +1,16 @@
-package decorator.whyuse.delegation;
+package decorator.whyuse.decorate.delegation;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import decorator.shared.MyReader;
 
-public class MyBufferedReaderDelegate {
+public class MyBufferedReaderDecorate implements MyReader {
 
     final private Queue<String> lines = new LinkedList<String>();
     final private MyReader reader;
 
-    public MyBufferedReaderDelegate(MyReader reader) {
+    public MyBufferedReaderDecorate(MyReader reader) {
         this.reader = reader;
     }
 

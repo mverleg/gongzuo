@@ -1,6 +1,5 @@
-package decorator.delegation;
+package decorator.whyuse.delegation;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 

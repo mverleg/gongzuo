@@ -1,7 +1,15 @@
 package decorator.whatisit;
 
-public class TopClass implements TheType {
+public class DecoratingClass implements TheType {
+
+    private final TheType decoratedInst;
+
+    public DecoratingClass(TheType inner) {
+        decoratedInst = inner;
+    }
+
     @Override public void doTheOperation() {
-        System.out.println("doing a thing");
+        decoratedInst.doTheOperation();
+        System.out.println("do something extra");
     }
 }

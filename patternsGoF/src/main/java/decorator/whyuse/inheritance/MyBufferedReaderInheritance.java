@@ -1,4 +1,4 @@
-package decorator.inheritance;
+package decorator.whyuse.inheritance;
 
 import java.io.File;
 import java.util.LinkedList;

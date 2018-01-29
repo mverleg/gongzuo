@@ -1,4 +1,4 @@
-package decorator.inkotlin
+package decorator.whyuse.inkotlin
 
 import decorator.shared.MyFileReader
 import decorator.shared.MySequenceReader

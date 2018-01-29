@@ -1,6 +1,8 @@
 package decorator.shared;
 
-public interface Reader {
+public interface MyReader {
     public String readLine();
+
+    public String getSourceName();
 }
 
