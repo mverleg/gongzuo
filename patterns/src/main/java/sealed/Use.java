@@ -1,4 +1,4 @@
-package sealed;
+package src.main.java.sealed;
 
 public class Use {
     public static void main(String[] args) {

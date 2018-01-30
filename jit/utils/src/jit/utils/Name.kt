@@ -1,4 +1,4 @@
-package jit.utils
+package jit.common
 
 class Name(value: String) {
     val value: String /* Interned */

@@ -1,6 +1,7 @@
-package jit.intermediary
+package jit.instructions
 
-import jit.utils.BinaryNumberLogicOperation
+import jit.common.BinaryNumberLogicOperation
+import jit.common.Inter
 
 class LogicInter(val operation: BinaryNumberLogicOperation, val leftInter: Inter<Int>, val rightInter: Inter<Int>): Inter<Boolean> {
 

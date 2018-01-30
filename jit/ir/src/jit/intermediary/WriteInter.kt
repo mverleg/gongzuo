@@ -1,7 +1,6 @@
-package jit.intermediary
+package jit.instructions
 
-import jit.intermediary.Inter
-import jit.intermediary.Variable
+import jit.common.Inter
 
 class WriteInter(val variable: Variable, val value: Inter<Int>): Inter<Int> {
 

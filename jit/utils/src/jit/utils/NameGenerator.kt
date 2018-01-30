@@ -1,4 +1,4 @@
-package jit.utils
+package jit.common
 
 val NAMELIST: List<String> = listOf(
         "red",

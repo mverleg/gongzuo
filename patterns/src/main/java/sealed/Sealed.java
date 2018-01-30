@@ -1,4 +1,4 @@
-package sealed;
+package src.main.java.sealed;
 
 public class Sealed {
     /* Private constructor so that all instances must be nested classes (or derived from them). */

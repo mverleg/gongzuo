@@ -1,4 +1,4 @@
-package jit.generate.low
+package jit.low.prelim
 
 interface LowGenerator {
 

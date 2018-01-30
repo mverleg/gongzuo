@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/formfields/formfields.iml" filepath="$PROJECT_DIR$/formfields/formfields.iml" />
       <module fileurl="file://$PROJECT_DIR$/gongzuo.iml" filepath="$PROJECT_DIR$/gongzuo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/patternsGoF/patternsGoF.iml" filepath="$PROJECT_DIR$/patternsGoF/patternsGoF.iml" />
       <module fileurl="file://$PROJECT_DIR$/unsafestring/unsafestring.iml" filepath="$PROJECT_DIR$/unsafestring/unsafestring.iml" />
       <module fileurl="file://$PROJECT_DIR$/visit_tree/visit_tree.iml" filepath="$PROJECT_DIR$/visit_tree/visit_tree.iml" />
     </modules>

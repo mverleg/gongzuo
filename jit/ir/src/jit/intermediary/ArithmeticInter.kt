@@ -1,6 +1,7 @@
-package jit.intermediary
+package jit.instructions
 
-import jit.utils.BinaryArithmOperation
+import jit.common.BinaryArithmOperation
+import jit.common.Inter
 
 class ArithmeticInter(val operation: BinaryArithmOperation, val leftInter: Inter<Int>, val rightInter: Inter<Int>): Inter<Int> {
 

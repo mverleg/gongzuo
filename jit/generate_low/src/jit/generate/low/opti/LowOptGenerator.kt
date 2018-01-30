@@ -1,4 +1,4 @@
-package jit.generate.low.opti
+package jit.low.opti
 
 class LowOptGenerator: LowCompiler {
 

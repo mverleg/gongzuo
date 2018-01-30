@@ -1,8 +1,8 @@
-package jit.intermediary
+package jit.instructions
 
 import jit.code.VariableMention
-import jit.utils.Name
-import jit.utils.Type
+import jit.common.Name
+import jit.common.Type
 
 /**
  * Represents a declared variable, with a name and type. Does not track the value.

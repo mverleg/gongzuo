@@ -2,8 +2,8 @@ package jit.jit
 
 import jit.code.FunDefCode
 import jit.code.PackageCode
-import jit.utils.CompileInvalidCodeError
-import jit.utils.Name
+import jit.common.CompileInvalidCodeError
+import jit.common.Name
 import jit.instructions.FunctionInter
 import jit.high.prelim.PrelimCompiler
 
