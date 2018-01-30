@@ -2,7 +2,7 @@ package decorator.whyuse.inheritance;
 
 import java.io.File;
 
-import decorator.shared.Utils;
+import decorator.whyuse.shared.Utils;
 
 public class DemoInheritance {
     public static void main(String[] args) {

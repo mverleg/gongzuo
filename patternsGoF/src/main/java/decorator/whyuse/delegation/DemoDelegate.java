@@ -3,8 +3,8 @@ package decorator.whyuse.delegation;
 import java.io.File;
 
 import decorator.whyuse.inkotlin.MyBufferedReaderKotlin;
-import decorator.shared.MyFileReader;
-import decorator.shared.MySequenceReader;
+import decorator.whyuse.shared.MyFileReader;
+import decorator.whyuse.shared.MySequenceReader;
 
 public class DemoDelegate {
     public static void main(String[] args) {

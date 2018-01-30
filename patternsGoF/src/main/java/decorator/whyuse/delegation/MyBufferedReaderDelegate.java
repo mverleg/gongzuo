@@ -3,7 +3,7 @@ package decorator.whyuse.delegation;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import decorator.shared.MyReader;
+import decorator.whyuse.shared.MyReader;
 
 public class MyBufferedReaderDelegate {
 

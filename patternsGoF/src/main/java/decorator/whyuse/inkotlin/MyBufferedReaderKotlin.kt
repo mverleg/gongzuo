@@ -2,7 +2,7 @@ package decorator.whyuse.inkotlin
 
 import java.util.LinkedList
 
-import decorator.shared.MyReader
+import decorator.whyuse.shared.MyReader
 
 class MyBufferedReaderKotlin(private val reader: MyReader): MyReader by reader {
 

@@ -1,8 +1,8 @@
 package decorator.whyuse.inkotlin
 
-import decorator.shared.MyFileReader
-import decorator.shared.MySequenceReader
-import decorator.shared.Utils
+import decorator.whyuse.shared.MyFileReader
+import decorator.whyuse.shared.MySequenceReader
+import decorator.whyuse.shared.Utils
 import java.io.File
 
 fun main(args: Array<String>) {

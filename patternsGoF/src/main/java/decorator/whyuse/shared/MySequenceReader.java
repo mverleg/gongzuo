@@ -1,4 +1,4 @@
-package decorator.shared;
+package decorator.whyuse.shared;
 
 public class MySequenceReader implements MyReader {
 

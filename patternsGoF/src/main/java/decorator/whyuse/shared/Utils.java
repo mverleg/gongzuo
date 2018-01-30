@@ -1,4 +1,4 @@
-package decorator.shared;
+package decorator.whyuse.shared;
 
 public class Utils {
     static public void functionForMyReaders(MyReader reader) {

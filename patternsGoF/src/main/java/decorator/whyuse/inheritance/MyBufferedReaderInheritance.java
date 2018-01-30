@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import decorator.shared.MyFileReader;
+import decorator.whyuse.shared.MyFileReader;
 
 public class MyBufferedReaderInheritance extends MyFileReader {
 

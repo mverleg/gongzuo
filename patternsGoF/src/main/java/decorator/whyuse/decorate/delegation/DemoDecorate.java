@@ -2,9 +2,9 @@ package decorator.whyuse.decorate.delegation;
 
 import java.io.File;
 
-import decorator.shared.MyFileReader;
-import decorator.shared.MySequenceReader;
-import decorator.shared.Utils;
+import decorator.whyuse.shared.MyFileReader;
+import decorator.whyuse.shared.MySequenceReader;
+import decorator.whyuse.shared.Utils;
 import decorator.whyuse.inkotlin.MyBufferedReaderKotlin;
 
 public class DemoDecorate {
