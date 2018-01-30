@@ -1,4 +1,4 @@
-package jit.utils
+package jit.common
 
 enum class BinaryArithmOperation {
     ADD,

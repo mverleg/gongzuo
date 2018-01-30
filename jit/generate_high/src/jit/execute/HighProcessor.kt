@@ -1,8 +1,8 @@
 package jit.execute
 
-import jit.utils.Name
+import jit.common.Name
 import jit.common.Processor
-import jit.utils.RuntimeInvalidCodeError
+import jit.common.RuntimeInvalidCodeError
 import jit.instructions.FunctionInter
 
 /**

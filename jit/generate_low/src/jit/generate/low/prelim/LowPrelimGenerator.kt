@@ -1,4 +1,4 @@
-package jit.generate.low.prelim
+package jit.low.prelim
 
 class LowPrelimGenerator: LowCompiler {
 

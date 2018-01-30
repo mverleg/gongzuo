@@ -1,9 +1,9 @@
 package jit.jit
 
 import jit.code.FunDefCode
-import jit.utils.Type
+import jit.common.Type
 import jit.instructions.FunctionInter
-import jit.intermediary.Variable
+import jit.instructions.Variable
 import jit.high.prelim.PrelimCompiler
 
 /**

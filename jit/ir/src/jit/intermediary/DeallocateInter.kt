@@ -1,4 +1,6 @@
-package jit.intermediary
+package jit.instructions
+
+import jit.common.Inter
 
 class DeallocateInter(val variable: Variable): Inter<Int> {
 

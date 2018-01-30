@@ -1,6 +1,7 @@
-package jit.intermediary
+package jit.instructions
 
-import jit.utils.Name
+import jit.common.Inter
+import jit.common.Name
 
 val MAIN_BLOCK_NAME = Name("entry")
 

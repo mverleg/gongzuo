@@ -1,11 +1,7 @@
 package jit.instructions
 
-import jit.utils.Name
-import jit.utils.RuntimeInvalidCodeError
-import jit.intermediary.BlockSet
-import jit.intermediary.ValueInter
-import jit.intermediary.Variable
-import jit.intermediary.WriteInter
+import jit.common.Name
+import jit.common.RuntimeInvalidCodeError
 
 abstract class FunctionInter(val name: Name, val parameters: List<Variable>) {
 

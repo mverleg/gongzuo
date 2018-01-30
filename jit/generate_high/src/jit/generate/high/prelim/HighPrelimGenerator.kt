@@ -13,24 +13,24 @@ import jit.code.ReadCode
 import jit.code.ScopedBlock
 import jit.code.UnaryArithmCode
 import jit.code.VariableMention
-import jit.utils.BinaryArithmOperation
-import jit.utils.CompileInvalidCodeError
+import jit.common.BinaryArithmOperation
+import jit.common.CompileInvalidCodeError
 import jit.common.Compiler
-import jit.intermediary.Inter
-import jit.intermediary.InterList
+import jit.common.Inter
+import jit.instructions.InterList
 import jit.common.MutableScopeStack
 import jit.common.ScopeStack
-import jit.utils.UnaryArithmOperation
+import jit.common.UnaryArithmOperation
 import jit.instructions.AllocateInter
-import jit.intermediary.ArithmeticInter
-import jit.intermediary.CallInter
+import jit.instructions.ArithmeticInter
+import jit.instructions.CallInter
 import jit.instructions.PrelimFunctionInter
-import jit.utils.Type
-import jit.intermediary.BlockSet
-import jit.intermediary.ReadInter
-import jit.intermediary.ValueInter
-import jit.intermediary.Variable
-import jit.intermediary.WriteInter
+import jit.common.Type
+import jit.instructions.BlockSet
+import jit.instructions.ReadInter
+import jit.instructions.ValueInter
+import jit.instructions.Variable
+import jit.instructions.WriteInter
 
 class HighPrelimGenerator: HighGenerator {
 
