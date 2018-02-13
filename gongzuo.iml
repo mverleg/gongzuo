@@ -12,18 +12,20 @@
       </configuration>
     </facet>
     <facet type="Python" name="Python">
-      <configuration sdkName="" />
+      <configuration sdkName="Python 3.6 (gongzuo)" />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/patterns" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/binary_json/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/flex_size_int/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/flex_size_int/test" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="Python 3.6 (gongzuo) interpreter library" level="application" />
   </component>
 </module>
