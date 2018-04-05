@@ -21,6 +21,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/patterns" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/binary_json/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/various/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
